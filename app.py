@@ -247,39 +247,47 @@ def cleveland(key, n):
     rows = list(top.iter_rows(named=True))
 
     medals = {0: "🥇", 1: "🥈", 2: "🥉"}
-    labels = [f"{medals.get(i, str(i + 1))}  {r['player']}  ·  {r['team']}"
-              for i, r in enumerate(rows)]
     speeds = [r["top_speed_kmh"] for r in rows]
-    hover  = [f"<b>{r['player']}</b><br>{r['team']} · {r['match']}<br>"
-              f"<b>{r['top_speed_kmh']:.1f} km/h</b>" for r in rows]
-    xmin   = min(speeds) - 1.5
+    xmin   = min(speeds) - 2.0
+    xmax   = max(speeds) + 1.0
 
+    # labels live INSIDE the plot (above each bar) so the chart uses full width
     f = fig(
-        height=n * 28 + 80,
-        margin=dict(l=250, r=80, t=10, b=50),
+        height=n * 40 + 70,
+        margin=dict(l=14, r=18, t=10, b=44),
         xaxis=dict(title="Top speed (km/h)", ticksuffix=" km/h",
-                   range=[xmin, max(speeds) + 1.5],
+                   range=[xmin, xmax],
                    showgrid=True, gridcolor=RULE, gridwidth=1,
                    zeroline=False, showline=False, fixedrange=True,
                    tickfont=dict(color=DIM, size=10.5)),
-        yaxis=dict(tickmode="array", tickvals=list(range(n)), ticktext=labels,
-                   showgrid=False, autorange="reversed", fixedrange=True,
-                   tickfont=dict(color=INK, size=10.5)),
+        yaxis=dict(visible=False, range=[n - 0.4, -1.0], fixedrange=True),
     )
 
-    for i in range(n):
-        f.add_shape(type="line", x0=xmin, x1=speeds[i], y0=i, y1=i,
-                    line=dict(color=RULE, width=1))
-
-    dot_colors = [ROSE if i < 3 else INDIGO for i in range(n)]
-    f.add_trace(go.Scatter(
-        x=speeds, y=list(range(n)), mode="markers",
-        marker=dict(size=10, color=dot_colors, line=dict(width=1.5, color=BG)),
-        text=hover, hovertemplate="%{text}<extra></extra>",
-    ))
-    for i, s in enumerate(speeds):
-        f.add_annotation(x=s + 0.1, y=i, text=f"{s:.1f}", showarrow=False,
-                         xanchor="left", font=dict(size=9.5, color=DIM))
+    for i, row in enumerate(rows):
+        col = ROSE if i < 3 else INDIGO
+        # track from baseline to value
+        f.add_shape(type="line", x0=xmin, x1=row["top_speed_kmh"], y0=i, y1=i,
+                    line=dict(color=RULE, width=1.5))
+        # value dot
+        f.add_trace(go.Scatter(
+            x=[row["top_speed_kmh"]], y=[i], mode="markers",
+            marker=dict(size=11, color=col, line=dict(width=1.5, color=BG)),
+            hovertemplate=(f"<b>{row['player']}</b><br>"
+                           f"{row['team']} · {row['match']}<br>"
+                           f"<b>{row['top_speed_kmh']:.1f} km/h</b><extra></extra>"),
+        ))
+        # name + team ABOVE the bar, left-aligned (full width available)
+        f.add_annotation(
+            x=xmin, y=i - 0.42, xanchor="left", yanchor="bottom",
+            text=(f"{medals.get(i, f'{i + 1}.')}  "
+                  f"<b>{row['player']}</b>  "
+                  f"<span style='color:#94a3b8'>{row['team']}</span>"),
+            showarrow=False,
+            font=dict(size=11, color=INK if i < 3 else INK))
+        # speed value at the dot
+        f.add_annotation(x=row["top_speed_kmh"] + 0.12, y=i, xanchor="left",
+                         text=f"<b>{row['top_speed_kmh']:.1f}</b>", showarrow=False,
+                         font=dict(size=10, color=col))
     return f
 
 show(cleveland(cache_key, top_n))
@@ -308,12 +316,13 @@ def ridgeline(key, teams_shown):
 
     f = fig(
         height=max(n * 26 + 120, 320),
-        margin=dict(l=160, r=50, t=20, b=50),
+        margin=dict(l=8, r=18, t=20, b=50),
         xaxis=dict(title="Top speed (km/h)", ticksuffix=" km/h",
                    showgrid=True, gridcolor=RULE, gridwidth=1,
                    zeroline=False, showline=False, fixedrange=True,
                    tickfont=dict(color=DIM, size=10.5)),
         yaxis=dict(showgrid=False, zeroline=False, showline=False, fixedrange=True,
+                   automargin=True,
                    tickmode="array", tickvals=tickvals, ticktext=teams,
                    range=[-0.5, (n - 1) * step + amp + 0.3],
                    tickfont=dict(color=INK, size=10)),
@@ -405,13 +414,13 @@ def slope_rows(key, n):
 def slope_fig(rows, hidden):
     n = len(rows)
     f = fig(
-        height=max(n * 26 + 140, 350),
-        margin=dict(l=60, r=170, t=50, b=50),
+        height=max(n * 28 + 140, 360),
+        margin=dict(l=44, r=44, t=50, b=50),
         xaxis=dict(tickmode="array", tickvals=[0, 1],
-                   ticktext=["Slower match", "Faster match"],
+                   ticktext=["Slower", "Faster"],
                    showgrid=False, zeroline=False, showline=False, fixedrange=True,
                    tickfont=dict(color=DIM, size=12, family="Inter"),
-                   range=[-0.18, 1.32]),
+                   range=[-0.12, 1.12]),
         yaxis=dict(showgrid=True, gridcolor=RULE, gridwidth=1,
                    zeroline=False, showline=False, fixedrange=True,
                    title="Top speed (km/h)", ticksuffix=" km/h",
@@ -462,14 +471,15 @@ def slope_fig(rows, hidden):
                         line=dict(color=INDIGO, width=1.6)),
             hoverinfo="skip",
         ))
-        # right-edge label
+        # player label sits just above the faster endpoint, inside the plot
         f.add_annotation(
-            x=1.04, y=row["fast"],
-            text=f"{row['player']}  <span style='color:#94a3b8'>Δ{row['delta']:.1f}</span>",
-            showarrow=False, xanchor="left",
+            x=1.0, y=row["fast"], xanchor="right", yanchor="bottom", yshift=5,
+            text=f"<b>{row['player']}</b>  <span style='color:#94a3b8'>Δ{row['delta']:.1f}</span>",
+            showarrow=False,
             font=dict(size=9.5, color=INK if i < 5 else DIM))
-        f.add_annotation(x=-0.03, y=row["slow"], text=f"{row['slow']:.1f}",
-                         showarrow=False, xanchor="right",
+        # slower value just left of the slow endpoint
+        f.add_annotation(x=0.0, y=row["slow"], xanchor="right", xshift=-4,
+                         text=f"{row['slow']:.1f}", showarrow=False,
                          font=dict(size=9, color=DIM))
     return f
 
