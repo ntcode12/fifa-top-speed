@@ -10,7 +10,7 @@ st.set_page_config(
     page_title="FIFA WC 2026 · Top Speeds",
     page_icon="⚡",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ── palette ───────────────────────────────────────────────────────────────────
@@ -35,34 +35,50 @@ html, body, [class*="css"], .stApp {
     font-family: 'Inter', -apple-system, sans-serif;
     background: #ffffff;
 }
-.block-container { padding-top: 2.2rem; padding-bottom: 5rem; max-width: 1320px; }
+.block-container { padding-top: 2.5rem; padding-bottom: 5rem;
+                   padding-left: 2.5rem; padding-right: 2.5rem; max-width: 1180px; }
 
 .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .16em;
                 text-transform: uppercase; color: #4f46e5; margin-bottom: 12px; }
 .hero-title   { font-size: 46px; font-weight: 900; color: #0f172a;
-                letter-spacing: -1.8px; line-height: 1.02; }
-.hero-sub     { font-size: 14px; color: #94a3b8; margin-top: 12px;
-                font-weight: 400; line-height: 1.5; max-width: 640px; }
+                letter-spacing: -1.8px; line-height: 1.04; }
+.hero-sub     { font-size: 14px; color: #94a3b8; margin-top: 14px;
+                font-weight: 400; line-height: 1.6; max-width: 640px; }
 
-.kpi          { padding: 18px 0 4px 0; border-top: 2px solid #0f172a; }
+.kpi          { padding: 20px 0 6px 0; border-top: 2px solid #0f172a; }
 .kpi.accent   { border-top: 2px solid #4f46e5; }
 .kpi-label    { font-size: 10px; font-weight: 700; letter-spacing: .1em;
-                text-transform: uppercase; color: #94a3b8; margin-bottom: 8px; }
+                text-transform: uppercase; color: #94a3b8; margin-bottom: 9px; }
 .kpi-value    { font-size: 28px; font-weight: 800; color: #0f172a;
-                letter-spacing: -0.6px; line-height: 1; }
-.kpi-sub      { font-size: 11.5px; color: #94a3b8; margin-top: 7px; line-height: 1.4; }
+                letter-spacing: -0.6px; line-height: 1.05; }
+.kpi-sub      { font-size: 11.5px; color: #94a3b8; margin-top: 8px; line-height: 1.45; }
 
 .sec-label    { font-size: 10px; font-weight: 700; letter-spacing: .14em;
-                text-transform: uppercase; color: #4f46e5; margin-bottom: 7px; }
+                text-transform: uppercase; color: #4f46e5; margin-bottom: 8px; }
 .sec-title    { font-size: 23px; font-weight: 800; color: #0f172a;
-                letter-spacing: -.5px; margin-bottom: 4px; }
-.sec-sub      { font-size: 12.5px; color: #94a3b8; margin-bottom: 16px;
-                line-height: 1.5; max-width: 720px; }
+                letter-spacing: -.5px; margin-bottom: 6px; line-height: 1.15; }
+.sec-sub      { font-size: 12.5px; color: #94a3b8; margin-bottom: 18px;
+                line-height: 1.6; max-width: 720px; }
 
 .footer       { font-size: 11px; color: #cbd5e1; text-align: center;
-                margin-top: 2rem; letter-spacing: .03em; }
+                margin-top: 2.5rem; letter-spacing: .03em; }
 
-hr { border: none; border-top: 1px solid #f1f5f9; margin: 3rem 0; }
+hr { border: none; border-top: 1px solid #f1f5f9; margin: 3.5rem 0; }
+
+/* ── mobile ─────────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+    .block-container { padding-left: 1.1rem; padding-right: 1.1rem;
+                       padding-top: 1.6rem; }
+    .hero-title { font-size: 32px; letter-spacing: -1px; }
+    .hero-sub   { font-size: 13px; }
+    .sec-title  { font-size: 19px; }
+    .sec-sub    { font-size: 12px; }
+    .kpi        { padding-top: 14px; }
+    .kpi-value  { font-size: 23px; }
+    hr { margin: 2.2rem 0; }
+    /* let stacked KPI columns breathe instead of squashing side-by-side */
+    [data-testid="stHorizontalBlock"] { gap: 0.4rem; }
+}
 
 [data-testid="stSidebar"] {
     background: #f8fafc;
@@ -198,7 +214,7 @@ best_team = (
     .row(0, named=True)
 )
 
-c1, c2, c3, c4 = st.columns(4)
+c1, c2, c3, c4 = st.columns(4, gap="large")
 kpis = [
     (c1, "Fastest recorded", f"{fastest['top_speed_kmh']:.1f} km/h",
      f"{fastest['player']} · {fastest['team']}", True),
