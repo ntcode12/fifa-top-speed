@@ -383,8 +383,8 @@ rule()
 
 # ── 3. SLOPE CHART ────────────────────────────────────────────────────────────
 section("Speed delta", "Who performed most differently between matches?",
-        "Players with 2+ appearances · left = slower match · right = faster match · "
-        "steeper slope = bigger swing · click any line to hide it")
+        "Players with 2+ appearances, sorted by swing size · hollow dot = slower match · "
+        "filled dot = faster match · click any row to hide it")
 
 if "slope_hidden" not in st.session_state:
     st.session_state.slope_hidden = set()
@@ -412,75 +412,67 @@ def slope_rows(key, n):
 
 
 def slope_fig(rows, hidden):
+    """Horizontal dumbbell — one row per player, no label collisions."""
     n = len(rows)
+    all_slow = [r["slow"] for r in rows]
+    all_fast = [r["fast"] for r in rows]
+    xmin = min(all_slow) - 1.5
+    xmax = max(all_fast) + 1.5
+
     f = fig(
-        height=max(n * 28 + 140, 360),
-        margin=dict(l=44, r=44, t=50, b=50),
-        xaxis=dict(tickmode="array", tickvals=[0, 1],
-                   ticktext=["Slower", "Faster"],
-                   showgrid=False, zeroline=False, showline=False, fixedrange=True,
-                   tickfont=dict(color=DIM, size=12, family="Inter"),
-                   range=[-0.12, 1.12]),
-        yaxis=dict(showgrid=True, gridcolor=RULE, gridwidth=1,
+        height=n * 40 + 70,
+        margin=dict(l=14, r=18, t=10, b=44),
+        xaxis=dict(title="Top speed (km/h)", ticksuffix=" km/h",
+                   range=[xmin, xmax],
+                   showgrid=True, gridcolor=RULE, gridwidth=1,
                    zeroline=False, showline=False, fixedrange=True,
-                   title="Top speed (km/h)", ticksuffix=" km/h",
                    tickfont=dict(color=DIM, size=10.5)),
+        yaxis=dict(visible=False, range=[n - 0.4, -1.0], fixedrange=True),
         clickmode="event+select",
     )
 
-    max_delta = rows[0]["delta"]
-    # invisible dimmed silhouette for hidden players (kept for context)
     for i, row in enumerate(rows):
-        if row["player"] not in hidden:
-            continue
-        f.add_trace(go.Scatter(
-            x=[0, 1], y=[row["slow"], row["fast"]], mode="lines",
-            line=dict(color=RULE, width=1), opacity=0.5,
-            hoverinfo="skip",
-        ))
+        active = row["player"] not in hidden
+        # connector
+        f.add_shape(type="line", x0=row["slow"], x1=row["fast"], y0=i, y1=i,
+                    line=dict(color=RULE if active else "#f1f5f9",
+                              width=2.5 if active else 1.5))
 
-    # active clickable polylines — many points so the whole line is a hit target
-    for i, row in enumerate(rows):
-        if row["player"] in hidden:
-            continue
-        t   = i / max(n - 1, 1)
-        lw  = 1.4 + (row["delta"] / max_delta) * 2.2
-        col = lerp(INDIGO, SLATE, t * 0.6)
+        if active:
+            # wide invisible hit-line so a click anywhere on the row hides it
+            xs = np.linspace(row["slow"], row["fast"], 14)
+            cdata = [[row["player"], row["team"], row["slow"],
+                      row["fast"], row["delta"]]] * 14
+            f.add_trace(go.Scatter(
+                x=xs, y=[i] * 14, mode="markers",
+                marker=dict(size=16, color=INDIGO, opacity=0.001),
+                customdata=cdata,
+                hovertemplate=("<b>%{customdata[0]}</b> · %{customdata[1]}<br>"
+                               "Slower %{customdata[2]:.1f} · Faster %{customdata[3]:.1f}"
+                               "  (Δ %{customdata[4]:.1f})<extra></extra>"),
+            ))
+            # slow dot (hollow) + fast dot (filled)
+            f.add_trace(go.Scatter(
+                x=[row["slow"], row["fast"]], y=[i, i], mode="markers",
+                marker=dict(size=10, color=[BG, INDIGO],
+                            line=dict(color=INDIGO, width=1.8)),
+                hoverinfo="skip",
+            ))
+            # numeric endpoints
+            f.add_annotation(x=row["slow"], y=i, xanchor="right", xshift=-6,
+                             text=f"{row['slow']:.1f}", showarrow=False,
+                             font=dict(size=8.5, color=DIM))
+            f.add_annotation(x=row["fast"], y=i, xanchor="left", xshift=6,
+                             text=f"<b>{row['fast']:.1f}</b>", showarrow=False,
+                             font=dict(size=8.5, color=INDIGO))
 
-        xs = np.linspace(0, 1, 16)
-        ys = np.linspace(row["slow"], row["fast"], 16)
-        sizes = [9] + [6] * 14 + [9]   # fat endpoints, slim mid-line hit points
-        cdata = [[row["player"], row["team"], row["slow"], row["fast"], row["delta"]]] * 16
-
-        f.add_trace(go.Scatter(
-            x=xs, y=ys, mode="lines+markers",
-            line=dict(color=col, width=lw),
-            marker=dict(size=sizes, color=col, opacity=0.001,
-                        line=dict(width=0)),
-            opacity=0.85 - t * 0.3,
-            customdata=cdata,
-            hovertemplate=("<b>%{customdata[0]}</b> · %{customdata[1]}<br>"
-                           "Slower %{customdata[2]:.1f} · Faster %{customdata[3]:.1f}"
-                           "  (Δ %{customdata[4]:.1f})<extra></extra>"),
-        ))
-        # visible endpoint dots (skip hover so the line trace owns clicks)
-        f.add_trace(go.Scatter(
-            x=[0, 1], y=[row["slow"], row["fast"]], mode="markers",
-            marker=dict(size=7,
-                        color=[BG, INDIGO],
-                        line=dict(color=INDIGO, width=1.6)),
-            hoverinfo="skip",
-        ))
-        # player label sits just above the faster endpoint, inside the plot
+        # name above the row, left-aligned inside the plot (full width)
+        name_col = INK if active else FAINT
         f.add_annotation(
-            x=1.0, y=row["fast"], xanchor="right", yanchor="bottom", yshift=5,
-            text=f"<b>{row['player']}</b>  <span style='color:#94a3b8'>Δ{row['delta']:.1f}</span>",
-            showarrow=False,
-            font=dict(size=9.5, color=INK if i < 5 else DIM))
-        # slower value just left of the slow endpoint
-        f.add_annotation(x=0.0, y=row["slow"], xanchor="right", xshift=-4,
-                         text=f"{row['slow']:.1f}", showarrow=False,
-                         font=dict(size=9, color=DIM))
+            x=xmin, y=i - 0.42, xanchor="left", yanchor="bottom",
+            text=(f"<b>{row['player']}</b>  "
+                  f"<span style='color:#94a3b8'>{row['team']} · Δ{row['delta']:.1f}</span>"),
+            showarrow=False, font=dict(size=11, color=name_col))
     return f
 
 
