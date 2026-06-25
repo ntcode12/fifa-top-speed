@@ -1,0 +1,18 @@
+[project]
+name = "fifa-top-speed"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "beautifulsoup4>=4.15.0",
+    "kaleido>=1.3.0",
+    "matplotlib>=3.11.0",
+    "pdfplumber>=0.11.10",
+    "plotly>=6.8.0",
+    "polars>=1.42.0",
+    "requests>=2.34.2",
+    "scipy>=1.18.0",
+    "seaborn>=0.13.2",
+    "streamlit>=1.58.0",
+]
