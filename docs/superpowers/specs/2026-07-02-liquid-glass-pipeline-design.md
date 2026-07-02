@@ -45,10 +45,10 @@ Streamlit app ──reads──> S3 curated parquet, falls back to local CSV
 Dagster project with software-defined assets:
 
 - `match_report_urls` — scrapes the hub page, returns the list of PDF
-  URLs; registers each match as a dynamic partition.
-- `raw_match_pdfs` — dynamically partitioned by match; downloads a PDF
-  only if `raw/pdfs/<match>.pdf` is not already in S3 (incremental —
-  knockout matches flow in automatically as FIFA publishes them).
+  URLs.
+- `raw_match_pdfs` — downloads each PDF only if `raw/pdfs/<name>.pdf`
+  is not already in S3 (incremental — knockout matches flow in
+  automatically as FIFA publishes them).
 - `top_speeds` — parses all raw PDFs (reading from S3), validates rows
   (speed within 15–40 km/h or null, non-empty player/team/match), writes
   `curated/top_speeds.parquet` to S3 and `data/top_speeds.csv` locally.
