@@ -1,6 +1,6 @@
 import rows from "@/data/top_speeds.json";
+import Explorer from "@/components/Explorer";
 import Hero from "@/components/Hero";
-import KpiCards from "@/components/KpiCards";
 import type { SpeedRow } from "@/lib/types";
 
 export default function Page() {
@@ -10,7 +10,10 @@ export default function Page() {
   return (
     <main className="mx-auto max-w-[1180px] px-10 pb-20 pt-14 max-sm:px-4 max-sm:pt-8">
       <Hero matches={matches} teams={teams} total={data.length} />
-      <KpiCards rows={data} />
+      <Explorer rows={data} />
+      <footer className="mt-16 text-center text-[11px] tracking-wide text-[var(--faint)]">
+        FIFA World Cup 2026 · Top Speed Report · Data scraped from fifatrainingcentre.com
+      </footer>
     </main>
   );
 }
