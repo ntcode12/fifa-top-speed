@@ -3,6 +3,8 @@
 import { useMemo, useState } from "react";
 import FilterBar, { FilterState } from "./FilterBar";
 import KpiCards from "./KpiCards";
+import Section from "./Section";
+import Leaderboard from "./charts/Leaderboard";
 import type { SpeedRow } from "@/lib/types";
 
 export default function Explorer({ rows }: { rows: SpeedRow[] }) {
@@ -41,6 +43,13 @@ export default function Explorer({ rows }: { rows: SpeedRow[] }) {
     <>
       <FilterBar allTeams={allTeams} allMatches={allMatches} state={state} onChange={setState} />
       <KpiCards rows={filtered} />
+      <Section
+        eyebrow="Leaderboard"
+        title={`Top ${state.topN} fastest player appearances`}
+        sub="One dot per player-match · top three highlighted · hover for full context"
+      >
+        <Leaderboard rows={filtered} n={state.topN} />
+      </Section>
     </>
   );
 }
