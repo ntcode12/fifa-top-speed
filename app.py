@@ -1,5 +1,7 @@
 """FIFA World Cup 2026 — Top Speed Explorer."""
 
+import os
+
 import numpy as np
 import polars as pl
 import streamlit as st
@@ -14,15 +16,16 @@ st.set_page_config(
 )
 
 # ── palette ───────────────────────────────────────────────────────────────────
-BG     = "#ffffff"
-INK    = "#0f172a"
-DIM    = "#64748b"
-FAINT  = "#94a3b8"
-RULE   = "#e2e8f0"
-INDIGO = "#4f46e5"
-ROSE   = "#e11d48"
-SLATE  = "#cbd5e1"
-AMBER  = "#d97706"
+BG     = "rgba(0,0,0,0)"   # plotly backgrounds transparent — glass shows through
+INK    = "#e7ecf5"          # primary text
+DIM    = "#8b93a7"          # secondary text
+FAINT  = "#5c6478"          # tertiary
+RULE   = "rgba(255,255,255,0.09)"  # gridlines / hairlines
+INDIGO = "#8b9cf9"          # accent (lightened for dark bg)
+ROSE   = "#fb7185"
+SLATE  = "#3d4457"
+AMBER  = "#fbbf24"
+DOT_BG = "#141a2e"          # hollow-dot fill on the dark backdrop
 
 PLOTLY_CONFIG = {"displayModeBar": False, "scrollZoom": False, "responsive": True}
 
@@ -33,39 +36,69 @@ st.markdown("""
 
 html, body, [class*="css"], .stApp {
     font-family: 'Inter', -apple-system, sans-serif;
-    background: #ffffff;
+}
+.stApp {
+    background: radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99,102,241,0.28), transparent),
+                radial-gradient(ellipse 60% 40% at 90% 10%, rgba(225,29,72,0.16), transparent),
+                radial-gradient(ellipse 50% 60% at 60% 110%, rgba(56,189,248,0.12), transparent),
+                #0b1020;
+    background-attachment: fixed;
 }
 .block-container { padding-top: 2.5rem; padding-bottom: 5rem;
                    padding-left: 2.5rem; padding-right: 2.5rem; max-width: 1180px; }
 
+/* ── glass card primitive ── */
+.glass {
+    background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+    backdrop-filter: blur(22px) saturate(140%);
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35),
+                inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
 .hero-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .16em;
-                text-transform: uppercase; color: #4f46e5; margin-bottom: 12px; }
-.hero-title   { font-size: 46px; font-weight: 900; color: #0f172a;
-                letter-spacing: -1.8px; line-height: 1.04; }
-.hero-sub     { font-size: 14px; color: #94a3b8; margin-top: 14px;
+                text-transform: uppercase; color: #8b9cf9; margin-bottom: 12px; }
+.hero-title   { font-size: 46px; font-weight: 900; color: #f2f5fb;
+                letter-spacing: -1.8px; line-height: 1.04;
+                text-shadow: 0 0 40px rgba(139,156,249,0.35); }
+.hero-sub     { font-size: 14px; color: #8b93a7; margin-top: 14px;
                 font-weight: 400; line-height: 1.6; max-width: 640px; }
 
-.kpi          { padding: 20px 0 6px 0; border-top: 2px solid #0f172a; }
-.kpi.accent   { border-top: 2px solid #4f46e5; }
+.kpi          { padding: 18px 20px; }
 .kpi-label    { font-size: 10px; font-weight: 700; letter-spacing: .1em;
-                text-transform: uppercase; color: #94a3b8; margin-bottom: 9px; }
-.kpi-value    { font-size: 28px; font-weight: 800; color: #0f172a;
+                text-transform: uppercase; color: #8b93a7; margin-bottom: 9px; }
+.kpi-value    { font-size: 28px; font-weight: 800; color: #f2f5fb;
                 letter-spacing: -0.6px; line-height: 1.05; }
-.kpi-sub      { font-size: 11.5px; color: #94a3b8; margin-top: 8px; line-height: 1.45; }
+.kpi.accent .kpi-value { color: #a5b4fc;
+                text-shadow: 0 0 24px rgba(139,156,249,0.5); }
+.kpi-sub      { font-size: 11.5px; color: #8b93a7; margin-top: 8px; line-height: 1.45; }
 
 .sec-label    { font-size: 10px; font-weight: 700; letter-spacing: .14em;
-                text-transform: uppercase; color: #4f46e5; margin-bottom: 8px; }
-.sec-title    { font-size: 23px; font-weight: 800; color: #0f172a;
+                text-transform: uppercase; color: #8b9cf9; margin-bottom: 8px; }
+.sec-title    { font-size: 23px; font-weight: 800; color: #f2f5fb;
                 letter-spacing: -.5px; margin-bottom: 6px; line-height: 1.15; }
-.sec-sub      { font-size: 12.5px; color: #94a3b8; margin-bottom: 18px;
+.sec-sub      { font-size: 12.5px; color: #8b93a7; margin-bottom: 18px;
                 line-height: 1.6; max-width: 720px; }
 
-.footer       { font-size: 11px; color: #cbd5e1; text-align: center;
+.footer       { font-size: 11px; color: #5c6478; text-align: center;
                 margin-top: 2.5rem; letter-spacing: .03em; }
 
-hr { border: none; border-top: 1px solid #f1f5f9; margin: 3.5rem 0; }
+hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 3.5rem 0; }
 
-/* ── mobile ─────────────────────────────────────────────────────────── */
+/* ── glassy sidebar ── */
+[data-testid="stSidebar"] {
+    background: rgba(15,20,38,0.72);
+    backdrop-filter: blur(24px) saturate(140%);
+    -webkit-backdrop-filter: blur(24px) saturate(140%);
+    border-right: 1px solid rgba(255,255,255,0.10);
+}
+[data-testid="stSidebar"] * { color: #e7ecf5; }
+[data-testid="stSidebar"] .stCaption, [data-testid="stSidebar"] small {
+    color: #8b93a7 !important; }
+
+/* ── mobile ── */
 @media (max-width: 640px) {
     .block-container { padding-left: 1.1rem; padding-right: 1.1rem;
                        padding-top: 1.6rem; }
@@ -73,23 +106,12 @@ hr { border: none; border-top: 1px solid #f1f5f9; margin: 3.5rem 0; }
     .hero-sub   { font-size: 13px; }
     .sec-title  { font-size: 19px; }
     .sec-sub    { font-size: 12px; }
-    .kpi        { padding-top: 14px; }
+    .kpi        { padding: 12px 14px; }
     .kpi-value  { font-size: 23px; }
     hr { margin: 2.2rem 0; }
-    /* let stacked KPI columns breathe instead of squashing side-by-side */
-    [data-testid="stHorizontalBlock"] { gap: 0.4rem; }
+    /* let stacked KPI glass cards breathe instead of touching */
+    [data-testid="stHorizontalBlock"] { gap: 0.85rem; }
 }
-
-[data-testid="stSidebar"] {
-    background: #f8fafc;
-    border-right: 1px solid #e2e8f0;
-}
-[data-testid="stSidebar"],
-[data-testid="stSidebar"] label,
-[data-testid="stSidebar"] p,
-[data-testid="stSidebar"] span:not(.stCaption),
-[data-testid="stSidebar"] div { color: #0f172a !important; }
-[data-testid="stSidebar"] .stCaption { color: #64748b !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -111,9 +133,21 @@ def rgba(c1: str, c2: str, t: float, alpha: float) -> str:
 
 
 # ── data ──────────────────────────────────────────────────────────────────────
-@st.cache_data
-def load():
-    return pl.read_csv("top_speeds.csv")
+S3_BUCKET = os.environ.get("FIFA_BUCKET", "fifa-topspeed-032968994565")
+S3_KEY = "curated/top_speeds.parquet"
+LOCAL_CSV = "data/top_speeds.csv"
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load() -> pl.DataFrame:
+    try:
+        import io
+        import boto3
+        body = boto3.client("s3").get_object(Bucket=S3_BUCKET, Key=S3_KEY)["Body"].read()
+        df = pl.read_parquet(io.BytesIO(body))
+    except Exception:
+        df = pl.read_csv(LOCAL_CSV)
+    return df.drop_nulls("top_speed_kmh")
 
 df_all = load()
 ALL_TEAMS   = sorted(df_all["team"].unique().to_list())
@@ -124,8 +158,10 @@ with st.sidebar:
     st.markdown("**Filters**")
     st.caption("Drive every chart at once")
     st.divider()
-    sel_teams   = st.multiselect("Teams",   ALL_TEAMS,   placeholder="All 48 teams")
-    sel_matches = st.multiselect("Matches", ALL_MATCHES, placeholder="All 48 matches")
+    sel_teams   = st.multiselect("Teams",   ALL_TEAMS,
+                                 placeholder=f"All {len(ALL_TEAMS)} teams")
+    sel_matches = st.multiselect("Matches", ALL_MATCHES,
+                                 placeholder=f"All {len(ALL_MATCHES)} matches")
     st.divider()
     top_n   = st.slider("Leaderboard — top N", 10, 40, 25, 5)
     delta_n = st.slider("Speed delta — top N", 10, 30, 20, 5)
@@ -149,7 +185,13 @@ TEAMS_BY_MEAN = (
     .to_list()
 )
 
-cache_key = f"{sel_teams}{sel_matches}"
+cache_key = f"{sel_teams}{sel_matches}{len(df_all)}"
+
+if "slope_hidden" not in st.session_state:
+    st.session_state.slope_hidden = set()
+if st.session_state.get("last_cache_key") != cache_key:
+    st.session_state.slope_hidden = set()
+    st.session_state.last_cache_key = cache_key
 
 
 # ── plotly base ───────────────────────────────────────────────────────────────
@@ -164,7 +206,7 @@ def base_layout(**kw):
                    tickfont=dict(color=INK, size=10.5)),
         margin=dict(l=10, r=10, t=10, b=40),
         showlegend=False,
-        hoverlabel=dict(bgcolor=BG, bordercolor=RULE,
+        hoverlabel=dict(bgcolor="rgba(20,26,46,0.95)", bordercolor="rgba(255,255,255,0.15)",
                         font=dict(family="Inter", size=12, color=INK)),
     )
     base.update(kw)
@@ -180,7 +222,7 @@ def show(f):
         return
     f.update_xaxes(fixedrange=True)
     f.update_yaxes(fixedrange=True)
-    st.plotly_chart(f, use_container_width=True, config=PLOTLY_CONFIG)
+    st.plotly_chart(f, width='stretch', config=PLOTLY_CONFIG)
 
 
 def section(eyebrow, title, sub):
@@ -197,9 +239,10 @@ def rule():
 st.markdown('<div class="hero-eyebrow">FIFA World Cup 2026</div>', unsafe_allow_html=True)
 st.markdown('<div class="hero-title">Top Speed Report</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="hero-sub">Every sprint from the group stage, measured. '
-    '48 matches · 48 teams · 1,512 player appearances tracked by FIFA\'s '
-    'physical performance system.</div>',
+    f'<div class="hero-sub">Every sprint measured by FIFA\'s physical '
+    f'performance system. {df_all["match"].n_unique()} matches · '
+    f'{df_all["team"].n_unique()} teams · {len(df_all):,} player appearances '
+    f'— refreshed daily as new match reports publish.</div>',
     unsafe_allow_html=True,
 )
 st.markdown("<br>", unsafe_allow_html=True)
@@ -227,7 +270,7 @@ kpis = [
 ]
 for col, label, val, sub, accent in kpis:
     col.markdown(
-        f'<div class="kpi{" accent" if accent else ""}">'
+        f'<div class="glass kpi{" accent" if accent else ""}">'
         f'<div class="kpi-label">{label}</div>'
         f'<div class="kpi-value">{val}</div>'
         f'<div class="kpi-sub">{sub}</div></div>',
@@ -271,7 +314,7 @@ def cleveland(key, n):
         # value dot
         f.add_trace(go.Scatter(
             x=[row["top_speed_kmh"]], y=[i], mode="markers",
-            marker=dict(size=11, color=col, line=dict(width=1.5, color=BG)),
+            marker=dict(size=11, color=col, line=dict(width=1.5, color=DOT_BG)),
             hovertemplate=(f"<b>{row['player']}</b><br>"
                            f"{row['team']} · {row['match']}<br>"
                            f"<b>{row['top_speed_kmh']:.1f} km/h</b><extra></extra>"),
@@ -281,7 +324,7 @@ def cleveland(key, n):
             x=xmin, y=i - 0.42, xanchor="left", yanchor="bottom",
             text=(f"{medals.get(i, f'{i + 1}.')}  "
                   f"<b>{row['player']}</b>  "
-                  f"<span style='color:#94a3b8'>{row['team']}</span>"),
+                  f"<span style='color:#8b93a7'>{row['team']}</span>"),
             showarrow=False,
             font=dict(size=11, color=INK if i < 3 else INK))
         # speed value at the dot
@@ -345,7 +388,10 @@ def ridgeline(key, teams_shown):
         fill = rgba(INDIGO, SLATE, t, 0.16)
         base = (n - 1 - rank) * step
 
-        kde = gaussian_kde(sub, bw_method=0.35)
+        try:
+            kde = gaussian_kde(sub, bw_method=0.35)
+        except Exception:
+            continue
         dens = kde(x_range)
         ys   = dens / dens.max() * amp
 
@@ -386,8 +432,6 @@ section("Speed delta", "Who performed most differently between matches?",
         "Players with 2+ appearances, sorted by swing size · hollow dot = slower match · "
         "filled dot = faster match · click any row to hide it")
 
-if "slope_hidden" not in st.session_state:
-    st.session_state.slope_hidden = set()
 if "slope_key" not in st.session_state:
     st.session_state.slope_key = 0
 
@@ -435,7 +479,7 @@ def slope_fig(rows, hidden):
         active = row["player"] not in hidden
         # connector
         f.add_shape(type="line", x0=row["slow"], x1=row["fast"], y0=i, y1=i,
-                    line=dict(color=RULE if active else "#f1f5f9",
+                    line=dict(color=RULE if active else "rgba(255,255,255,0.05)",
                               width=2.5 if active else 1.5))
 
         if active:
@@ -454,7 +498,7 @@ def slope_fig(rows, hidden):
             # slow dot (hollow) + fast dot (filled)
             f.add_trace(go.Scatter(
                 x=[row["slow"], row["fast"]], y=[i, i], mode="markers",
-                marker=dict(size=10, color=[BG, INDIGO],
+                marker=dict(size=10, color=[DOT_BG, INDIGO],
                             line=dict(color=INDIGO, width=1.8)),
                 hoverinfo="skip",
             ))
@@ -471,7 +515,7 @@ def slope_fig(rows, hidden):
         f.add_annotation(
             x=xmin, y=i - 0.42, xanchor="left", yanchor="bottom",
             text=(f"<b>{row['player']}</b>  "
-                  f"<span style='color:#94a3b8'>{row['team']} · Δ{row['delta']:.1f}</span>"),
+                  f"<span style='color:#8b93a7'>{row['team']} · Δ{row['delta']:.1f}</span>"),
             showarrow=False, font=dict(size=11, color=name_col))
     return f
 
@@ -483,7 +527,7 @@ else:
     hidden = st.session_state.slope_hidden
     if hidden:
         cols = st.columns([6, 1])
-        cols[1].button("↺ Show all", use_container_width=True,
+        cols[1].button("↺ Show all", width='stretch',
                        on_click=lambda: (st.session_state.slope_hidden.clear(),
                                          st.session_state.__setitem__(
                                              "slope_key",
@@ -493,7 +537,7 @@ else:
     f.update_xaxes(fixedrange=True)
     f.update_yaxes(fixedrange=True)
     event = st.plotly_chart(
-        f, use_container_width=True, config=PLOTLY_CONFIG,
+        f, width='stretch', config=PLOTLY_CONFIG,
         on_select="rerun", selection_mode="points",
         key=f"slope_{st.session_state.slope_key}",
     )

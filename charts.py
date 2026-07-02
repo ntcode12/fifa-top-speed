@@ -33,7 +33,7 @@ SAND    = "#c9a96e"          # warm highlight
 
 ACCENT_SEQ = [BLUE, SAGE, SAND, CORAL]  # four-stop gradient for sequences
 
-df = pl.read_csv("top_speeds.csv")
+df = pl.read_csv("data/top_speeds.csv")
 
 team_max = (
     df.group_by("team")
