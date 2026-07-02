@@ -6,6 +6,7 @@ import KpiCards from "./KpiCards";
 import Section from "./Section";
 import Leaderboard from "./charts/Leaderboard";
 import Ridgeline from "./charts/Ridgeline";
+import Dumbbell from "./charts/Dumbbell";
 import type { SpeedRow } from "@/lib/types";
 
 export default function Explorer({ rows }: { rows: SpeedRow[] }) {
@@ -57,6 +58,13 @@ export default function Explorer({ rows }: { rows: SpeedRow[] }) {
         sub="Fastest teams at the top, fading to slowest · rose tick marks the team mean · dashed line is the tournament median"
       >
         <Ridgeline rows={filtered} teamsShown={state.ridgeN} />
+      </Section>
+      <Section
+        eyebrow="Speed delta"
+        title="Who performed most differently between matches?"
+        sub="Players with 2+ appearances, sorted by swing size · hollow dot = slower match · filled dot = faster match · click any row to hide it"
+      >
+        <Dumbbell rows={filtered} n={state.deltaN} />
       </Section>
     </>
   );
