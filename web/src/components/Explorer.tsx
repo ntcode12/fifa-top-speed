@@ -5,6 +5,7 @@ import FilterBar, { FilterState } from "./FilterBar";
 import KpiCards from "./KpiCards";
 import Section from "./Section";
 import Leaderboard from "./charts/Leaderboard";
+import Ridgeline from "./charts/Ridgeline";
 import type { SpeedRow } from "@/lib/types";
 
 export default function Explorer({ rows }: { rows: SpeedRow[] }) {
@@ -49,6 +50,13 @@ export default function Explorer({ rows }: { rows: SpeedRow[] }) {
         sub="One dot per player-match · top three highlighted · hover for full context"
       >
         <Leaderboard rows={filtered} n={state.topN} />
+      </Section>
+      <Section
+        eyebrow="Distribution"
+        title="How speed distributes within each team"
+        sub="Fastest teams at the top, fading to slowest · rose tick marks the team mean · dashed line is the tournament median"
+      >
+        <Ridgeline rows={filtered} teamsShown={state.ridgeN} />
       </Section>
     </>
   );
