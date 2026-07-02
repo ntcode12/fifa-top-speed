@@ -222,7 +222,7 @@ def show(f):
         return
     f.update_xaxes(fixedrange=True)
     f.update_yaxes(fixedrange=True)
-    st.plotly_chart(f, use_container_width=True, config=PLOTLY_CONFIG)
+    st.plotly_chart(f, width='stretch', config=PLOTLY_CONFIG)
 
 
 def section(eyebrow, title, sub):
@@ -527,7 +527,7 @@ else:
     hidden = st.session_state.slope_hidden
     if hidden:
         cols = st.columns([6, 1])
-        cols[1].button("↺ Show all", use_container_width=True,
+        cols[1].button("↺ Show all", width='stretch',
                        on_click=lambda: (st.session_state.slope_hidden.clear(),
                                          st.session_state.__setitem__(
                                              "slope_key",
@@ -537,7 +537,7 @@ else:
     f.update_xaxes(fixedrange=True)
     f.update_yaxes(fixedrange=True)
     event = st.plotly_chart(
-        f, use_container_width=True, config=PLOTLY_CONFIG,
+        f, width='stretch', config=PLOTLY_CONFIG,
         on_select="rerun", selection_mode="points",
         key=f"slope_{st.session_state.slope_key}",
     )
