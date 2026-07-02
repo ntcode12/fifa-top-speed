@@ -1,5 +1,7 @@
 """FIFA World Cup 2026 — Top Speed Explorer."""
 
+import os
+
 import numpy as np
 import polars as pl
 import streamlit as st
@@ -111,9 +113,21 @@ def rgba(c1: str, c2: str, t: float, alpha: float) -> str:
 
 
 # ── data ──────────────────────────────────────────────────────────────────────
-@st.cache_data
-def load():
-    return pl.read_csv("top_speeds.csv")
+S3_BUCKET = os.environ.get("FIFA_BUCKET", "fifa-topspeed-032968994565")
+S3_KEY = "curated/top_speeds.parquet"
+LOCAL_CSV = "data/top_speeds.csv"
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load() -> pl.DataFrame:
+    try:
+        import io
+        import boto3
+        body = boto3.client("s3").get_object(Bucket=S3_BUCKET, Key=S3_KEY)["Body"].read()
+        df = pl.read_parquet(io.BytesIO(body))
+    except Exception:
+        df = pl.read_csv(LOCAL_CSV)
+    return df.drop_nulls("top_speed_kmh")
 
 df_all = load()
 ALL_TEAMS   = sorted(df_all["team"].unique().to_list())
@@ -149,7 +163,13 @@ TEAMS_BY_MEAN = (
     .to_list()
 )
 
-cache_key = f"{sel_teams}{sel_matches}"
+cache_key = f"{sel_teams}{sel_matches}{len(df_all)}"
+
+if "slope_hidden" not in st.session_state:
+    st.session_state.slope_hidden = set()
+if st.session_state.get("last_cache_key") != cache_key:
+    st.session_state.slope_hidden = set()
+    st.session_state.last_cache_key = cache_key
 
 
 # ── plotly base ───────────────────────────────────────────────────────────────
@@ -386,8 +406,6 @@ section("Speed delta", "Who performed most differently between matches?",
         "Players with 2+ appearances, sorted by swing size · hollow dot = slower match · "
         "filled dot = faster match · click any row to hide it")
 
-if "slope_hidden" not in st.session_state:
-    st.session_state.slope_hidden = set()
 if "slope_key" not in st.session_state:
     st.session_state.slope_key = 0
 
