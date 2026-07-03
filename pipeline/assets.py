@@ -11,7 +11,10 @@ from bs4 import BeautifulSoup
 from pipeline import parsing, storage
 
 BASE_URL = "https://www.fifatrainingcentre.com"
-HUB_URL = f"{BASE_URL}/en/fifa-world-cup-2026/match-report-hub.php"
+HUB_URLS = [
+    f"{BASE_URL}/en/fifa-world-cup-2026/match-report-hub.php",
+    f"{BASE_URL}/en/fifa-world-cup-2026/match-report-hub-knockout-stage.php",
+]
 HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"}
 
 RAW_PREFIX = "raw/pdfs/"
@@ -22,16 +25,19 @@ WEB_JSON = Path("web/src/data/top_speeds.json")
 
 @dg.asset
 def match_report_urls(context: dg.AssetExecutionContext) -> list[str]:
-    """All match-report PDF URLs currently listed on the FIFA hub page."""
-    r = requests.get(HUB_URL, headers=HEADERS, timeout=30)
-    r.raise_for_status()
-    soup = BeautifulSoup(r.text, "html.parser")
-    urls = sorted({
-        BASE_URL + a["href"] if a["href"].startswith("/") else a["href"]
-        for a in soup.find_all("a", href=True)
-        if ".pdf" in a["href"].lower()
-    })
-    context.log.info(f"Found {len(urls)} PDFs on hub")
+    """All match-report PDF URLs listed on the FIFA hub pages (group + knockout)."""
+    found: set[str] = set()
+    for hub_url in HUB_URLS:
+        r = requests.get(hub_url, headers=HEADERS, timeout=30)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, "html.parser")
+        found |= {
+            BASE_URL + a["href"] if a["href"].startswith("/") else a["href"]
+            for a in soup.find_all("a", href=True)
+            if ".pdf" in a["href"].lower()
+        }
+    urls = sorted(found)
+    context.log.info(f"Found {len(urls)} PDFs across {len(HUB_URLS)} hub pages")
     context.add_output_metadata({"num_pdfs": len(urls)})
     return urls
 

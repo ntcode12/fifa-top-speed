@@ -1,30 +1,33 @@
 import GlassCard from "./GlassCard";
 import { kpis } from "@/lib/stats";
+import { Unit, eliteThreshold, unitLabel } from "@/lib/units";
 import type { SpeedRow } from "@/lib/types";
 
-export default function KpiCards({ rows }: { rows: SpeedRow[] }) {
-  const k = kpis(rows);
+export default function KpiCards({ rows, unit = "kmh" }: { rows: SpeedRow[]; unit?: Unit }) {
+  const label = unitLabel(unit);
+  const threshold = eliteThreshold(unit);
+  const k = kpis(rows, threshold);
   const cards = [
     {
       label: "Fastest recorded",
-      value: `${k.fastest.top_speed_kmh.toFixed(1)} km/h`,
+      value: `${k.fastest.top_speed_kmh.toFixed(1)} ${label}`,
       sub: `${k.fastest.player} · ${k.fastest.team}`,
       accent: true,
     },
     {
       label: "Fastest team avg",
       value: k.bestTeam.team,
-      sub: `${k.bestTeam.mean.toFixed(1)} km/h mean`,
+      sub: `${k.bestTeam.mean.toFixed(1)} ${label} mean`,
       accent: false,
     },
     {
       label: "Tournament mean",
-      value: `${k.meanSpeed.toFixed(1)} km/h`,
+      value: `${k.meanSpeed.toFixed(1)} ${label}`,
       sub: `across ${k.total.toLocaleString()} appearances`,
       accent: false,
     },
     {
-      label: "Players ≥ 35 km/h",
+      label: `Players ≥ ${unit === "kmh" ? "35" : threshold.toFixed(1)} ${label}`,
       value: String(k.n35),
       sub: `${((k.n35 / k.total) * 100).toFixed(1)}% of all appearances`,
       accent: false,

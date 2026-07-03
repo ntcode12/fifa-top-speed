@@ -19,9 +19,11 @@ function mix(t: number) {
 export default function Ridgeline({
   rows,
   teamsShown,
+  unit = "km/h",
 }: {
   rows: SpeedRow[];
   teamsShown: number;
+  unit?: string;
 }) {
   const [ref, width] = useMeasure<HTMLDivElement>();
   const [tip, setTip] = useState<TooltipState | null>(null);
@@ -49,7 +51,7 @@ export default function Ridgeline({
             fontSize={10.5}
             fill="var(--dim)"
           >
-            {t} km/h
+            {t} {unit}
           </text>
         ))}
         <line
@@ -118,7 +120,7 @@ export default function Ridgeline({
                     y: e.clientY - b.top,
                     lines: [
                       t.team,
-                      `Mean ${m.toFixed(1)} km/h`,
+                      `Mean ${m.toFixed(1)} ${unit}`,
                       `Range ${Math.min(...t.speeds).toFixed(1)}–${Math.max(...t.speeds).toFixed(1)}`,
                       `n=${t.speeds.length}`,
                     ],

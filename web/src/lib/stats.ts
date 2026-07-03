@@ -39,10 +39,10 @@ export function topN(rows: SpeedRow[], n: number): SpeedRow[] {
   return [...rows].sort((a, b) => b.top_speed_kmh - a.top_speed_kmh).slice(0, n);
 }
 
-export function kpis(rows: SpeedRow[]) {
+export function kpis(rows: SpeedRow[], threshold = 35) {
   const fastest = topN(rows, 1)[0];
   const teams = teamsByMean(rows);
-  const n35 = rows.filter((r) => r.top_speed_kmh >= 35).length;
+  const n35 = rows.filter((r) => r.top_speed_kmh >= threshold).length;
   return {
     fastest,
     bestTeam: { team: teams[0].team, mean: teams[0].mean },

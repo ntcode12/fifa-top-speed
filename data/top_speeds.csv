@@ -222,6 +222,40 @@ BEL V IRN,IR Iran,18,Amirhossein HOSSEINZADEH,26.0
 BEL V IRN,IR Iran,19,Ali NEMATI,32.9
 BEL V IRN,IR Iran,20,Shahriyar MOGHANLOO,25.3
 BEL V IRN,IR Iran,23,Ramin REZAEIAN,29.1
+BEL V SEN,Belgium,1,Thibaut COURTOIS,26.6
+BEL V SEN,Belgium,3,Arthur THEATE,31.6
+BEL V SEN,Belgium,4,Brandon MECHELE,30.5
+BEL V SEN,Belgium,5,Maxim DE CUYPER,30.4
+BEL V SEN,Belgium,7,Kevin DE BRUYNE,30.9
+BEL V SEN,Belgium,8,Youri TIELEMANS,27.9
+BEL V SEN,Belgium,9,Romelu LUKAKU,26.3
+BEL V SEN,Belgium,10,Leandro TROSSARD,30.4
+BEL V SEN,Belgium,11,Jeremy DOKU,31.8
+BEL V SEN,Belgium,14,Dodi LUKEBAKIO,32.8
+BEL V SEN,Belgium,15,Thomas MEUNIER,30.6
+BEL V SEN,Belgium,17,Charles DE KETELAERE,30.4
+BEL V SEN,Belgium,19,Diego MOREIRA,32.5
+BEL V SEN,Belgium,20,Hans VANAKEN,27.0
+BEL V SEN,Belgium,21,Timothy CASTAGNE,31.9
+BEL V SEN,Belgium,23,Nicolas RASKIN,29.4
+BEL V SEN,Belgium,24,Amadou ONANA,26.2
+BEL V SEN,Senegal,5,Idrissa Gana GUEYE,27.8
+BEL V SEN,Senegal,6,Pathe CISS,30.1
+BEL V SEN,Senegal,8,Lamine CAMARA,32.6
+BEL V SEN,Senegal,10,Sadio MANE,31.8
+BEL V SEN,Senegal,11,Nicolas JACKSON,31.9
+BEL V SEN,Senegal,13,Iliman NDIAYE,30.1
+BEL V SEN,Senegal,14,Ismail JAKOBS,34.7
+BEL V SEN,Senegal,15,Krepin DIATTA,31.4
+BEL V SEN,Senegal,17,Pape Matar SARR,28.9
+BEL V SEN,Senegal,18,Ismaila SARR,32.9
+BEL V SEN,Senegal,19,Moussa NIAKHATE,29.1
+BEL V SEN,Senegal,20,Ibrahim MBAYE,33.3
+BEL V SEN,Senegal,21,Habib DIARRA,30.3
+BEL V SEN,Senegal,22,Bara Sapoko NDIAYE,27.0
+BEL V SEN,Senegal,23,Mory DIAW,22.5
+BEL V SEN,Senegal,25,El Hadji Malick DIOUF,30.5
+BEL V SEN,Senegal,26,Pape GUEYE,27.4
 BIH V QAT,Bosnia and Herzegovina,1,Nikola VASILJ,22.4
 BIH V QAT,Bosnia and Herzegovina,3,Dennis HADZIKADUNIC,28.3
 BIH V QAT,Bosnia and Herzegovina,5,Sead KOLASINAC,31.2
@@ -286,6 +320,37 @@ BRA V HAI,Haiti,20,Frantzdy PIERROT,27.3
 BRA V HAI,Haiti,21,Josue CASIMIR,34.4
 BRA V HAI,Haiti,22,Jean-Kevin DUVERNE,32.7
 BRA V HAI,Haiti,25,Dominique SIMON,30.5
+BRA V JPN,Brazil,1,ALISSON,22.9
+BRA V JPN,Brazil,3,GABRIEL MAGALHAES,30.0
+BRA V JPN,Brazil,4,MARQUINHOS,33.8
+BRA V JPN,Brazil,5,CASEMIRO,28.5
+BRA V JPN,Brazil,7,VINICIUS JUNIOR,33.2
+BRA V JPN,Brazil,8,BRUNO GUIMARAES,28.4
+BRA V JPN,Brazil,9,MATHEUS CUNHA,29.1
+BRA V JPN,Brazil,13,DANILO,31.6
+BRA V JPN,Brazil,16,DOUGLAS SANTOS,29.5
+BRA V JPN,Brazil,17,FABINHO,26.2
+BRA V JPN,Brazil,18,DANILO SANTOS,27.9
+BRA V JPN,Brazil,19,ENDRICK,32.4
+BRA V JPN,Brazil,20,LUCAS PAQUETA,30.9
+BRA V JPN,Brazil,22,GABRIEL MARTINELLI,33.0
+BRA V JPN,Brazil,26,RAYAN,31.6
+BRA V JPN,Japan,1,Zion SUZUKI,23.5
+BRA V JPN,Japan,2,Yukinari SUGAWARA,28.4
+BRA V JPN,Japan,3,Shogo TANIGUCHI,29.0
+BRA V JPN,Japan,6,Shuto MACHINO,32.6
+BRA V JPN,Japan,7,Ao TANAKA,29.0
+BRA V JPN,Japan,10,Ritsu DOAN,29.1
+BRA V JPN,Japan,11,Daizen MAEDA,33.2
+BRA V JPN,Japan,13,Keito NAKAMURA,30.1
+BRA V JPN,Japan,14,Junya ITO,31.8
+BRA V JPN,Japan,15,Daichi KAMADA,30.8
+BRA V JPN,Japan,18,Ayase UEDA,33.3
+BRA V JPN,Japan,19,Koki OGAWA,25.3
+BRA V JPN,Japan,21,Hiroki ITO,31.7
+BRA V JPN,Japan,22,Takehiro TOMIYASU,30.2
+BRA V JPN,Japan,24,Kaishu SANO,29.9
+BRA V JPN,Japan,25,Junnosuke SUZUKI,29.2
 BRA V MAR POST,Brazil,1,ALISSON,17.8
 BRA V MAR POST,Brazil,3,GABRIEL MAGALHAES,31.0
 BRA V MAR POST,Brazil,4,MARQUINHOS,33.3
@@ -413,6 +478,36 @@ CIV V ECU,Ecuador,20,Nilson ANGULO,31.5
 CIV V ECU,Ecuador,21,Alan FRANCO,32.2
 CIV V ECU,Ecuador,23,Moises CAICEDO,30.5
 CIV V ECU,Ecuador,25,Jackson POROZO,32.7
+CIV V NOR,Côte d'Ivoire,1,Yahia FOFANA,24.1
+CIV V NOR,Côte d'Ivoire,3,Ghislain KONAN,30.9
+CIV V NOR,Côte d'Ivoire,7,Odilon KOSSOUNOU,32.2
+CIV V NOR,Côte d'Ivoire,8,Franck KESSIE,30.5
+CIV V NOR,Côte d'Ivoire,9,Ange-Yoan BONNY,31.9
+CIV V NOR,Côte d'Ivoire,11,Yan DIOMANDE,34.7
+CIV V NOR,Côte d'Ivoire,12,Elye WAHI,33.2
+CIV V NOR,Côte d'Ivoire,14,Oumar DIAKITE,29.7
+CIV V NOR,Côte d'Ivoire,15,Amad DIALLO,32.8
+CIV V NOR,Côte d'Ivoire,17,Guela DOUE,31.1
+CIV V NOR,Côte d'Ivoire,18,Ibrahim SANGARE,31.9
+CIV V NOR,Côte d'Ivoire,19,Nicolas PEPE,32.6
+CIV V NOR,Côte d'Ivoire,20,Emmanuel AGBADOU,34.4
+CIV V NOR,Côte d'Ivoire,22,Evann GUESSAND,20.4
+CIV V NOR,Côte d'Ivoire,24,Bazoumana TOURE,27.1
+CIV V NOR,Côte d'Ivoire,26,Christ Inao OULAI,32.1
+CIV V NOR,Norway,1,Orjan NYLAND,21.5
+CIV V NOR,Norway,3,Kristoffer AJER,33.1
+CIV V NOR,Norway,5,David MOLLER WOLFE,32.7
+CIV V NOR,Norway,6,Patrick BERG,31.3
+CIV V NOR,Norway,7,Alexander SORLOTH,33.7
+CIV V NOR,Norway,8,Sander BERGE,31.5
+CIV V NOR,Norway,9,Erling HAALAND,34.1
+CIV V NOR,Norway,10,Martin ODEGAARD,32.5
+CIV V NOR,Norway,14,Fredrik AURSNES,27.8
+CIV V NOR,Norway,16,Marcus HOLMGREN PEDERSEN,34.9
+CIV V NOR,Norway,17,Torbjorn HEGGEM,32.1
+CIV V NOR,Norway,20,Antonio NUSA,29.8
+CIV V NOR,Norway,21,Andreas SCHJELDERUP,32.8
+CIV V NOR,Norway,22,Oscar BOBB,29.3
 COD V UZB,Congo DR,1,Lionel MPASI,26.7
 COD V UZB,Congo DR,2,Aaron WAN,33.7
 COD V UZB,Congo DR,4,Axel TUANZEBE,30.3
@@ -757,6 +852,37 @@ EGY V IRN,IR Iran,19,Ali NEMATI,32.4
 EGY V IRN,IR Iran,20,Shahriyar MOGHANLOO,28.9
 EGY V IRN,IR Iran,21,Mohammad GHORBANI,28.1
 EGY V IRN,IR Iran,23,Ramin REZAEIAN,31.6
+ENG V COD,Congo DR,1,Lionel MPASI,19.5
+ENG V COD,Congo DR,2,Aaron WAN,33.3
+ENG V COD,Congo DR,4,Axel TUANZEBE,31.4
+ENG V COD,Congo DR,6,Ngalayel MUKAU,34.4
+ENG V COD,Congo DR,7,Nathanael MBUKU,31.7
+ENG V COD,Congo DR,8,Samuel MOUTOUSSAMY,31.0
+ENG V COD,Congo DR,9,Brian CIPENGA,30.9
+ENG V COD,Congo DR,10,Theo BONGONDA,32.0
+ENG V COD,Congo DR,12,Joris KAYEMBE,26.1
+ENG V COD,Congo DR,13,Meschack ELIA,34.3
+ENG V COD,Congo DR,14,Noah SADIKI,31.6
+ENG V COD,Congo DR,19,Fiston MAYELE,24.6
+ENG V COD,Congo DR,20,Yoane WISSA,33.3
+ENG V COD,Congo DR,22,Chancel MBEMBA,32.1
+ENG V COD,Congo DR,25,Edo KAYEMBE,26.5
+ENG V COD,Congo DR,26,Arthur MASUAKU,33.3
+ENG V COD,England,1,Jordan PICKFORD,26.9
+ENG V COD,England,2,Ezri KONSA,32.2
+ENG V COD,England,3,Nico OREILLY,34.2
+ENG V COD,England,4,Declan RICE,32.6
+ENG V COD,England,5,John STONES,27.7
+ENG V COD,England,6,Marc GUEHI,29.8
+ENG V COD,England,7,Bukayo SAKA,28.9
+ENG V COD,England,8,Elliot ANDERSON,28.0
+ENG V COD,England,9,Harry KANE,32.4
+ENG V COD,England,10,Jude BELLINGHAM,31.1
+ENG V COD,England,11,Marcus RASHFORD,35.2
+ENG V COD,England,18,Anthony GORDON,28.6
+ENG V COD,England,20,Noni MADUEKE,33.7
+ENG V COD,England,21,Eberechi EZE,30.0
+ENG V COD,England,25,Djed SPENCE,35.0
 ENG V CRO,Croatia,1,Dominik LIVAKOVIC,26.9
 ENG V CRO,Croatia,2,Josip STANISIC,32.2
 ENG V CRO,Croatia,4,Josko GVARDIOL,34.1
@@ -820,6 +946,38 @@ ENG V GHA,Ghana,19,Inaki WILLIAMS,33.5
 ENG V GHA,Ghana,21,Kojo Peprah OPPONG,25.2
 ENG V GHA,Ghana,25,Prince ADU,33.7
 ENG V GHA,Ghana,26,Marvin SENAYA,29.8
+ESP V AUT,Austria,1,Alexander SCHLAGER,23.3
+ESP V AUT,Austria,3,Kevin DANSO,30.6
+ESP V AUT,Austria,4,Xaver SCHLAGER,31.4
+ESP V AUT,Austria,5,Stefan POSCH,30.1
+ESP V AUT,Austria,6,Nicolas SEIWALD,30.6
+ESP V AUT,Austria,7,Marko ARNAUTOVIC,31.8
+ESP V AUT,Austria,8,David ALABA,29.3
+ESP V AUT,Austria,9,Marcel SABITZER,33.1
+ESP V AUT,Austria,10,Florian GRILLITSCH,29.9
+ESP V AUT,Austria,11,Michael GREGORITSCH,30.1
+ESP V AUT,Austria,14,Sasa KALAJDZIC,29.7
+ESP V AUT,Austria,17,Carney CHUKWUEMEKA,30.5
+ESP V AUT,Austria,18,Romano SCHMID,34.0
+ESP V AUT,Austria,20,Konrad LAIMER,32.6
+ESP V AUT,Austria,22,Alexander PRASS,30.1
+ESP V AUT,Austria,24,Paul WANNER,30.0
+ESP V AUT,Spain,2,Marc PUBILL,26.2
+ESP V AUT,Spain,6,Mikel MERINO,29.7
+ESP V AUT,Spain,7,Ferran TORRES,32.4
+ESP V AUT,Spain,8,Fabian RUIZ,18.2
+ESP V AUT,Spain,9,GAVI,29.9
+ESP V AUT,Spain,10,Dani OLMO,31.8
+ESP V AUT,Spain,12,Pedro PORRO,32.7
+ESP V AUT,Spain,14,Aymeric LAPORTE,31.3
+ESP V AUT,Spain,15,Alex BAENA,31.9
+ESP V AUT,Spain,16,RODRI,30.9
+ESP V AUT,Spain,19,Lamine YAMAL,32.8
+ESP V AUT,Spain,20,PEDRI,30.0
+ESP V AUT,Spain,21,Mikel OYARZABAL,29.3
+ESP V AUT,Spain,22,Pau CUBARSI,31.7
+ESP V AUT,Spain,23,Unai SIMON,24.7
+ESP V AUT,Spain,24,Marc CUCURELLA,30.6
 ESP V CPV,Cabo Verde,1,VOZINHA,25.1
 ESP V CPV,Cabo Verde,3,DINEY BORGES,30.1
 ESP V CPV,Cabo Verde,4,PICO LOPES,32.5
@@ -944,6 +1102,38 @@ FRA V SEN,Senegal,20,Ibrahim MBAYE,31.9
 FRA V SEN,Senegal,21,Habib DIARRA,33.3
 FRA V SEN,Senegal,25,El Hadji Malick DIOUF,31.2
 FRA V SEN,Senegal,26,Pape GUEYE,31.0
+FRA V SWE,France,2,Malo GUSTO,28.6
+FRA V SWE,France,3,Lucas DIGNE,31.2
+FRA V SWE,France,4,Dayot UPAMECANO,35.4
+FRA V SWE,France,5,Jules KOUNDE,30.3
+FRA V SWE,France,7,Ousmane DEMBELE,28.4
+FRA V SWE,France,8,Aurelien TCHOUAMENI,31.4
+FRA V SWE,France,10,Kylian MBAPPE,30.2
+FRA V SWE,France,11,Michael OLISE,33.1
+FRA V SWE,France,12,Bradley BARCOLA,34.7
+FRA V SWE,France,14,Adrien RABIOT,29.8
+FRA V SWE,France,16,Mike MAIGNAN,21.6
+FRA V SWE,France,17,William SALIBA,33.4
+FRA V SWE,France,19,Theo HERNANDEZ,30.6
+FRA V SWE,France,20,Desire DOUE,31.3
+FRA V SWE,France,22,Jean-Philippe MATETA,28.7
+FRA V SWE,France,24,Rayan CHERKI,29.8
+FRA V SWE,Sweden,1,Jacob WIDELL ZETTERSTROM,27.7
+FRA V SWE,Sweden,2,Gustaf LAGERBIELKE,30.3
+FRA V SWE,Sweden,3,Victor LINDELOF,28.7
+FRA V SWE,Sweden,5,Gabriel GUDMUNDSSON,29.2
+FRA V SWE,Sweden,7,Lucas BERGVALL,31.8
+FRA V SWE,Sweden,8,Daniel SVENSSON,31.9
+FRA V SWE,Sweden,9,Alexander ISAK,31.3
+FRA V SWE,Sweden,10,Benjamin NYGREN,30.9
+FRA V SWE,Sweden,11,Anthony ELANGA,37.2
+FRA V SWE,Sweden,17,Viktor GYOKERES,34.8
+FRA V SWE,Sweden,18,Yasin AYARI,27.3
+FRA V SWE,Sweden,19,Mattias SVANBERG,25.9
+FRA V SWE,Sweden,22,Besfort ZENELI,31.4
+FRA V SWE,Sweden,24,Elliot STROUD,32.0
+FRA V SWE,Sweden,25,Gustaf NILSSON,24.2
+FRA V SWE,Sweden,26,Taha ALI,31.2
 GER V CIV,Côte d'Ivoire,1,Yahia FOFANA,22.2
 GER V CIV,Côte d'Ivoire,3,Ghislain KONAN,31.4
 GER V CIV,Côte d'Ivoire,5,Wilfried SINGO,34.4
@@ -1006,6 +1196,40 @@ GER V CUW,Germany,19,Leroy SANE,33.5
 GER V CUW,Germany,22,David RAUM,31.1
 GER V CUW,Germany,23,Felix NMECHA,31.0
 GER V CUW,Germany,26,Deniz UNDAV,27.4
+GER V PAR,Germany,1,Manuel NEUER,28.1
+GER V PAR,Germany,2,Antonio RUEDIGER,32.2
+GER V PAR,Germany,3,Waldemar ANTON,33.3
+GER V PAR,Germany,4,Jonathan TAH,31.2
+GER V PAR,Germany,5,Aleksandar PAVLOVIC,31.0
+GER V PAR,Germany,6,Joshua KIMMICH,28.8
+GER V PAR,Germany,7,Kai HAVERTZ,30.0
+GER V PAR,Germany,8,Leon GORETZKA,33.7
+GER V PAR,Germany,10,Jamal MUSIALA,32.3
+GER V PAR,Germany,11,Nick WOLTEMADE,31.4
+GER V PAR,Germany,17,Florian WIRTZ,33.0
+GER V PAR,Germany,18,Nathaniel BROWN,31.8
+GER V PAR,Germany,19,Leroy SANE,33.9
+GER V PAR,Germany,20,Nadiem AMIRI,28.6
+GER V PAR,Germany,23,Felix NMECHA,31.0
+GER V PAR,Germany,24,Malick THIAW,32.2
+GER V PAR,Germany,26,Deniz UNDAV,27.6
+GER V PAR,Paraguay,2,Gustavo VELAZQUEZ,29.7
+GER V PAR,Paraguay,4,Juan Jose CACERES,31.1
+GER V PAR,Paraguay,5,Fabian BALBUENA,21.6
+GER V PAR,Paraguay,6,Junior ALONSO,27.9
+GER V PAR,Paraguay,9,Antonio SANABRIA,31.1
+GER V PAR,Paraguay,10,Miguel ALMIRON,31.7
+GER V PAR,Paraguay,11,MAURICIO,32.1
+GER V PAR,Paraguay,12,Orlando GILL,24.4
+GER V PAR,Paraguay,13,Jose CANALE,31.7
+GER V PAR,Paraguay,14,Andres CUBAS,31.2
+GER V PAR,Paraguay,15,Gustavo GOMEZ,27.8
+GER V PAR,Paraguay,16,Damian BOBADILLA,31.1
+GER V PAR,Paraguay,19,Julio ENCISO,33.1
+GER V PAR,Paraguay,20,Braian OJEDA,28.0
+GER V PAR,Paraguay,21,Gabriel AVALOS,31.2
+GER V PAR,Paraguay,23,Matias GALARZA,31.1
+GER V PAR,Paraguay,24,Gustavo CABALLERO,31.5
 GHA V PAN,Ghana,1,Lawrence Ati ZIGI,22.3
 GHA V PAN,Ghana,3,Caleb YIRENKYI,30.9
 GHA V PAN,Ghana,4,Jonas ADJETEY,31.0
@@ -1321,6 +1545,38 @@ MAR V HAI,Morocco,23,Bilal EL KHANNOUSS,30.1
 MAR V HAI,Morocco,24,Neil EL AYNAOUI,34.1
 MAR V HAI,Morocco,25,Redouane HALHAL,32.8
 MAR V HAI,Morocco,26,Anass SALAH EDDINE,32.4
+MEX V ECU,Ecuador,1,Hernan GALINDEZ,21.5
+MEX V ECU,Ecuador,3,Piero HINCAPIE,33.6
+MEX V ECU,Ecuador,4,Joel ORDONEZ,30.9
+MEX V ECU,Ecuador,6,Willian PACHO,32.9
+MEX V ECU,Ecuador,9,John YEBOAH,30.5
+MEX V ECU,Ecuador,10,Kendry PAEZ,29.6
+MEX V ECU,Ecuador,11,Kevin RODRIGUEZ,28.9
+MEX V ECU,Ecuador,13,Enner VALENCIA,32.7
+MEX V ECU,Ecuador,15,Pedro VITE,30.9
+MEX V ECU,Ecuador,16,Jordy CAICEDO,29.1
+MEX V ECU,Ecuador,17,Angelo PRECIADO,32.3
+MEX V ECU,Ecuador,19,Gonzalo PLATA,29.6
+MEX V ECU,Ecuador,20,Nilson ANGULO,33.8
+MEX V ECU,Ecuador,21,Alan FRANCO,31.3
+MEX V ECU,Ecuador,23,Moises CAICEDO,34.5
+MEX V ECU,Ecuador,26,Yaimar MEDINA,30.5
+MEX V ECU,Mexico,1,Raul RANGEL,22.9
+MEX V ECU,Mexico,2,Jorge SANCHEZ,32.6
+MEX V ECU,Mexico,3,Cesar MONTES,30.5
+MEX V ECU,Mexico,5,Johan VASQUEZ,30.7
+MEX V ECU,Mexico,6,Erik LIRA,33.0
+MEX V ECU,Mexico,7,Luis ROMO,32.2
+MEX V ECU,Mexico,9,Raul JIMENEZ,33.2
+MEX V ECU,Mexico,11,Santiago GIMENEZ,30.7
+MEX V ECU,Mexico,15,Israel REYES,24.2
+MEX V ECU,Mexico,16,Julian QUINONES,32.2
+MEX V ECU,Mexico,17,Orbelin PINEDA,31.4
+MEX V ECU,Mexico,18,Obed VARGAS,28.2
+MEX V ECU,Mexico,19,Gilberto MORA,29.5
+MEX V ECU,Mexico,23,Jesus GALLARDO,31.9
+MEX V ECU,Mexico,25,Roberto ALVARADO,30.7
+MEX V ECU,Mexico,26,Brian GUTIERREZ,34.8
 MEX V KOR,Korea Republic,1,KIM Seunggyu,25.1
 MEX V KOR,Korea Republic,2,LEE Hanbeom,32.1
 MEX V KOR,Korea Republic,3,LEE Gihyuk,31.6
@@ -1416,6 +1672,39 @@ NED V JPN,Netherlands,21,Frenkie DE JONG,29.3
 NED V JPN,Netherlands,22,Denzel DUMFRIES,31.1
 NED V JPN,Netherlands,24,Crysencio SUMMERVILLE,34.3
 NED V JPN,Netherlands,26,Quinten TIMBER,30.7
+NED V MAR,Morocco,1,Yassine BOUNOU,20.0
+NED V MAR,Morocco,2,Achraf HAKIMI,35.5
+NED V MAR,Morocco,3,Noussair MAZRAOUI,33.9
+NED V MAR,Morocco,6,Ayyoub BOUADDI,28.7
+NED V MAR,Morocco,7,Chemsdine TALBI,31.3
+NED V MAR,Morocco,8,Azzedine OUNAHI,30.5
+NED V MAR,Morocco,9,Soufiane RAHIMI,34.6
+NED V MAR,Morocco,10,Brahim DIAZ,28.7
+NED V MAR,Morocco,11,Ismael SAIBARI,33.3
+NED V MAR,Morocco,14,Issa DIOP,31.6
+NED V MAR,Morocco,15,Samir EL MOURABET,33.1
+NED V MAR,Morocco,16,Gessime YASSINE,28.4
+NED V MAR,Morocco,18,Chadi RIAD,29.6
+NED V MAR,Morocco,23,Bilal EL KHANNOUSS,34.6
+NED V MAR,Morocco,24,Neil EL AYNAOUI,32.6
+NED V MAR,Morocco,26,Anass SALAH EDDINE,32.2
+NED V MAR,Netherlands,1,Bart VERBRUGGEN,23.4
+NED V MAR,Netherlands,3,Marten DE ROON,24.0
+NED V MAR,Netherlands,4,Virgil VAN DIJK,35.1
+NED V MAR,Netherlands,5,Nathan AKE,33.4
+NED V MAR,Netherlands,6,Jan Paul VAN HECKE,31.2
+NED V MAR,Netherlands,7,Justin KLUIVERT,23.2
+NED V MAR,Netherlands,8,Ryan GRAVENBERCH,31.1
+NED V MAR,Netherlands,9,Wout WEGHORST,28.6
+NED V MAR,Netherlands,11,Cody GAKPO,33.2
+NED V MAR,Netherlands,15,Micky VAN DE VEN,35.8
+NED V MAR,Netherlands,19,Brian BROBBEY,32.8
+NED V MAR,Netherlands,20,Teun KOOPMEINERS,27.2
+NED V MAR,Netherlands,21,Frenkie DE JONG,28.8
+NED V MAR,Netherlands,22,Denzel DUMFRIES,34.3
+NED V MAR,Netherlands,24,Crysencio SUMMERVILLE,34.7
+NED V MAR,Netherlands,25,Jorrel HATO,33.2
+NED V MAR,Netherlands,26,Quinten TIMBER,31.9
 NED V SWE,Netherlands,1,Bart VERBRUGGEN,19.0
 NED V SWE,Netherlands,4,Virgil VAN DIJK,32.3
 NED V SWE,Netherlands,6,Jan Paul VAN HECKE,31.5
@@ -1701,6 +1990,37 @@ POR V COD,Portugal,20,JOAO CANCELO,28.5
 POR V COD,Portugal,23,VITINHA,31.4
 POR V COD,Portugal,25,NUNO MENDES,31.5
 POR V COD,Portugal,26,FRANCISCO CONCEICAO,32.9
+POR V CRO,Croatia,1,Dominik LIVAKOVIC,19.0
+POR V CRO,Croatia,2,Josip STANISIC,32.0
+POR V CRO,Croatia,3,Marin PONGRACIC,31.9
+POR V CRO,Croatia,4,Josko GVARDIOL,26.9
+POR V CRO,Croatia,6,Josip SUTALO,29.0
+POR V CRO,Croatia,8,Mateo KOVACIC,29.9
+POR V CRO,Croatia,9,Andrej KRAMARIC,28.1
+POR V CRO,Croatia,10,Luka MODRIC,32.1
+POR V CRO,Croatia,11,Ante BUDIMIR,32.1
+POR V CRO,Croatia,13,Nikola VLASIC,32.6
+POR V CRO,Croatia,14,Ivan PERISIC,33.5
+POR V CRO,Croatia,15,Mario PASALIC,29.1
+POR V CRO,Croatia,16,Martin BATURINA,31.1
+POR V CRO,Croatia,17,Petar SUCIC,31.8
+POR V CRO,Croatia,20,Igor MATANOVIC,29.0
+POR V CRO,Portugal,1,DIOGO COSTA,23.5
+POR V CRO,Portugal,2,NELSON SEMEDO,35.9
+POR V CRO,Portugal,3,RUBEN DIAS,31.4
+POR V CRO,Portugal,7,CRISTIANO RONALDO,26.9
+POR V CRO,Portugal,8,BRUNO FERNANDES,29.7
+POR V CRO,Portugal,9,GONCALO RAMOS,30.6
+POR V CRO,Portugal,10,BERNARDO SILVA,26.6
+POR V CRO,Portugal,13,RENATO VEIGA,29.8
+POR V CRO,Portugal,15,JOAO NEVES,27.5
+POR V CRO,Portugal,17,RAFAEL LEAO,34.4
+POR V CRO,Portugal,18,PEDRO NETO,34.2
+POR V CRO,Portugal,20,JOAO CANCELO,32.9
+POR V CRO,Portugal,21,RUBEN NEVES,28.4
+POR V CRO,Portugal,23,VITINHA,29.3
+POR V CRO,Portugal,25,NUNO MENDES,35.2
+POR V CRO,Portugal,26,FRANCISCO CONCEICAO,32.2
 POR V GHA,Portugal,1,DIOGO COSTA,24.1
 POR V GHA,Portugal,2,NELSON SEMEDO,33.8
 POR V GHA,Portugal,3,RUBEN DIAS,32.1
@@ -1765,6 +2085,36 @@ QAT V SUI,Switzerland,17,Ruben VARGAS,31.8
 QAT V SUI,Switzerland,20,Michel AEBISCHER,29.6
 QAT V SUI,Switzerland,22,Fabian RIEDER,28.2
 QAT V SUI,Switzerland,23,Zeki AMDOUNI,27.0
+RSA V CAN,Canada,2,Alistair JOHNSTON,32.9
+RSA V CAN,Canada,4,Luc DE FOUGEROLLES,30.2
+RSA V CAN,Canada,7,Stephen EUSTAQUIO,27.3
+RSA V CAN,Canada,10,Jonathan DAVID,31.5
+RSA V CAN,Canada,11,Liam MILLAR,33.8
+RSA V CAN,Canada,12,Tani OLUWASEYI,34.9
+RSA V CAN,Canada,13,Derek CORNELIUS,29.1
+RSA V CAN,Canada,14,Jacob SHAFFELBURG,32.9
+RSA V CAN,Canada,15,Moise BOMBITO,31.7
+RSA V CAN,Canada,16,Maxime CREPEAU,21.6
+RSA V CAN,Canada,17,Tajon BUCHANAN,33.5
+RSA V CAN,Canada,19,Alphonso DAVIES,29.9
+RSA V CAN,Canada,22,Richie LARYEA,35.0
+RSA V CAN,Canada,23,Niko SIGUR,31.0
+RSA V CAN,Canada,24,Promise DAVID,30.1
+RSA V CAN,Canada,25,Nathan SALIBA,29.8
+RSA V CAN,South Africa,1,Ronwen WILLIAMS,24.6
+RSA V CAN,South Africa,4,Teboho MOKOENA,30.8
+RSA V CAN,South Africa,5,Thalente MBATHA,29.9
+RSA V CAN,South Africa,6,Aubrey MODIBA,29.0
+RSA V CAN,South Africa,7,Oswin APPOLLIS,31.2
+RSA V CAN,South Africa,8,Tshepang MOREMI,32.6
+RSA V CAN,South Africa,10,Relebohile MOFOKENG,32.3
+RSA V CAN,South Africa,12,Thapelo MASEKO,35.2
+RSA V CAN,South Africa,13,Sphephelo SITHOLE,29.5
+RSA V CAN,South Africa,14,Mbekezeli MBOKAZI,33.8
+RSA V CAN,South Africa,15,Iqraam RAYNERS,31.2
+RSA V CAN,South Africa,17,Evidence MAKGOPA,30.0
+RSA V CAN,South Africa,20,Khuliso MUDAU,34.3
+RSA V CAN,South Africa,21,Ime OKON,33.8
 RSA V KOR,Korea Republic,1,KIM Seunggyu,23.5
 RSA V KOR,Korea Republic,2,LEE Hanbeom,32.3
 RSA V KOR,Korea Republic,3,LEE Gihyuk,32.8
@@ -1890,6 +2240,38 @@ SEN V IRQ,Senegal,20,Ibrahim MBAYE,33.5
 SEN V IRQ,Senegal,21,Habib DIARRA,32.4
 SEN V IRQ,Senegal,23,Mory DIAW,23.5
 SEN V IRQ,Senegal,26,Pape GUEYE,28.4
+SUI V ALG,Algeria,2,Aissa MANDI,28.1
+SUI V ALG,Algeria,6,Ramiz ZERROUKI,30.3
+SUI V ALG,Algeria,7,Riyad MAHREZ,30.5
+SUI V ALG,Algeria,8,Houssem AOUAR,28.9
+SUI V ALG,Algeria,9,Amine GOUIRI,26.8
+SUI V ALG,Algeria,10,Fares CHAIBI,31.2
+SUI V ALG,Algeria,11,Anis HADJ MOUSSA,26.1
+SUI V ALG,Algeria,13,Jaouen HADJAM,32.6
+SUI V ALG,Algeria,14,Hicham BOUDAOUI,27.8
+SUI V ALG,Algeria,15,Rayan AIT,32.4
+SUI V ALG,Algeria,17,Rafik BELGHALI,32.3
+SUI V ALG,Algeria,19,Nabil BENTALEB,31.0
+SUI V ALG,Algeria,20,Adil BOULBINA,28.2
+SUI V ALG,Algeria,21,Ramy BENSEBAINI,31.8
+SUI V ALG,Algeria,22,Ibrahim MAZA,28.3
+SUI V ALG,Algeria,23,Luca ZIDANE,27.0
+SUI V ALG,Switzerland,1,Gregor KOBEL,25.3
+SUI V ALG,Switzerland,3,Silvan WIDMER,27.6
+SUI V ALG,Switzerland,4,Nico ELVEDI,32.5
+SUI V ALG,Switzerland,5,Manuel AKANJI,30.4
+SUI V ALG,Switzerland,6,Denis ZAKARIA,33.3
+SUI V ALG,Switzerland,7,Breel EMBOLO,34.0
+SUI V ALG,Switzerland,8,Remo FREULER,28.6
+SUI V ALG,Switzerland,9,Johan MANZAMBI,31.1
+SUI V ALG,Switzerland,10,Granit XHAKA,26.6
+SUI V ALG,Switzerland,11,Dan NDOYE,32.9
+SUI V ALG,Switzerland,13,Ricardo RODRIGUEZ,28.1
+SUI V ALG,Switzerland,17,Ruben VARGAS,30.7
+SUI V ALG,Switzerland,19,Noah OKAFOR,32.9
+SUI V ALG,Switzerland,20,Michel AEBISCHER,28.2
+SUI V ALG,Switzerland,22,Fabian RIEDER,31.3
+SUI V ALG,Switzerland,23,Zeki AMDOUNI,29.3
 SUI V BIH,Bosnia and Herzegovina,1,Nikola VASILJ,25.2
 SUI V BIH,Bosnia and Herzegovina,4,Tarik MUHAREMOVIC,31.4
 SUI V BIH,Bosnia and Herzegovina,5,Sead KOLASINAC,31.6
@@ -2207,6 +2589,36 @@ USA V AUS,USA,19,Haji WRIGHT,31.2
 USA V AUS,USA,20,Folarin BALOGUN,33.9
 USA V AUS,USA,23,Joe SCALLY,30.3
 USA V AUS,USA,24,Matt FREESE,24.6
+USA V BIH,Bosnia and Herzegovina,1,Nikola VASILJ,27.4
+USA V BIH,Bosnia and Herzegovina,4,Tarik MUHAREMOVIC,30.8
+USA V BIH,Bosnia and Herzegovina,5,Sead KOLASINAC,31.7
+USA V BIH,Bosnia and Herzegovina,6,Benjamin TAHIROVIC,28.3
+USA V BIH,Bosnia and Herzegovina,7,Amar DEDIC,31.5
+USA V BIH,Bosnia and Herzegovina,8,Armin GIGOVIC,30.7
+USA V BIH,Bosnia and Herzegovina,10,Ermedin DEMIROVIC,32.7
+USA V BIH,Bosnia and Herzegovina,11,Edin DZEKO,26.9
+USA V BIH,Bosnia and Herzegovina,14,Ivan SUNJIC,29.3
+USA V BIH,Bosnia and Herzegovina,15,Amar MEMIC,32.0
+USA V BIH,Bosnia and Herzegovina,18,Nikola KATIC,31.5
+USA V BIH,Bosnia and Herzegovina,19,Kerim ALAJBEGOVIC,31.4
+USA V BIH,Bosnia and Herzegovina,20,Esmir BAJRAKTAREVIC,30.9
+USA V BIH,Bosnia and Herzegovina,21,Stjepan RADELJIC,29.1
+USA V BIH,Bosnia and Herzegovina,23,Haris TABAKOVIC,29.0
+USA V BIH,Bosnia and Herzegovina,26,Ermin MAHMIC,31.3
+USA V BIH,USA,2,Sergino DEST,33.3
+USA V BIH,USA,3,Chris RICHARDS,30.7
+USA V BIH,USA,4,Tyler ADAMS,31.4
+USA V BIH,USA,5,Antonee ROBINSON,33.8
+USA V BIH,USA,7,Giovanni REYNA,26.0
+USA V BIH,USA,8,Weston McKENNIE,30.7
+USA V BIH,USA,9,Ricardo PEPI,27.6
+USA V BIH,USA,10,Christian PULISIC,33.7
+USA V BIH,USA,13,Tim REAM,29.9
+USA V BIH,USA,14,Sebastian BERHALTER,30.4
+USA V BIH,USA,16,Alex FREEMAN,29.6
+USA V BIH,USA,17,Malik TILLMAN,32.9
+USA V BIH,USA,20,Folarin BALOGUN,32.5
+USA V BIH,USA,24,Matt FREESE,25.5
 USA V PAR,Paraguay,2,Gustavo VELAZQUEZ,31.3
 USA V PAR,Paraguay,3,Omar ALDERETE,30.3
 USA V PAR,Paraguay,4,Juan Jose CACERES,32.0

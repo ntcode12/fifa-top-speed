@@ -7,10 +7,18 @@ import { linearScale, ticks } from "@/lib/scale";
 import { topN } from "@/lib/stats";
 import type { SpeedRow } from "@/lib/types";
 
-const MEDALS = ["🥇", "🥈", "🥉"];
+const MEDAL_COLORS = ["#f6c667", "#cbd5e1", "#e2a273"];
 const ROW_H = 44;
 
-export default function Leaderboard({ rows, n }: { rows: SpeedRow[]; n: number }) {
+export default function Leaderboard({
+  rows,
+  n,
+  unit = "km/h",
+}: {
+  rows: SpeedRow[];
+  n: number;
+  unit?: string;
+}) {
   const [ref, width] = useMeasure<HTMLDivElement>();
   const [tip, setTip] = useState<TooltipState | null>(null);
   const top = topN(rows, n);
@@ -29,7 +37,7 @@ export default function Leaderboard({ rows, n }: { rows: SpeedRow[]; n: number }
           <g key={t}>
             <line x1={x(t)} x2={x(t)} y1={0} y2={height - 30} stroke="rgba(255,255,255,0.09)" />
             <text x={x(t)} y={height - 12} textAnchor="middle" fontSize={10.5} fill="var(--dim)">
-              {t} km/h
+              {t} {unit}
             </text>
           </g>
         ))}
@@ -46,14 +54,48 @@ export default function Leaderboard({ rows, n }: { rows: SpeedRow[]; n: number }
                 setTip({
                   x: e.clientX - b.left,
                   y: e.clientY - b.top,
-                  lines: [r.player, `${r.team} · ${r.match}`, `${r.top_speed_kmh.toFixed(1)} km/h`],
+                  lines: [r.player, `${r.team} · ${r.match}`, `${r.top_speed_kmh.toFixed(1)} ${unit}`],
                 });
               }}
               onMouseLeave={() => setTip(null)}
             >
-              <text x={x(xmin)} y={cy - 8} fontSize={11.5} fill="var(--ink)" fontWeight={600}>
-                {MEDALS[i] ?? `${i + 1}.`} {r.player}
-                <tspan fill="var(--dim)" fontWeight={400}>
+              {i < 3 ? (
+                <>
+                  <circle
+                    cx={x(xmin) + 9}
+                    cy={cy - 12}
+                    r={9}
+                    fill={MEDAL_COLORS[i]}
+                    fillOpacity={0.16}
+                    stroke={MEDAL_COLORS[i]}
+                    strokeWidth={1.2}
+                  />
+                  <text
+                    x={x(xmin) + 9}
+                    y={cy - 8.5}
+                    textAnchor="middle"
+                    fontSize={9.5}
+                    fill={MEDAL_COLORS[i]}
+                    fontWeight={700}
+                  >
+                    {i + 1}
+                  </text>
+                </>
+              ) : (
+                <text
+                  x={x(xmin) + 9}
+                  y={cy - 8.5}
+                  textAnchor="middle"
+                  fontSize={10.5}
+                  fill="var(--faint)"
+                  fontWeight={600}
+                >
+                  {i + 1}
+                </text>
+              )}
+              <text x={x(xmin) + 26} y={cy - 8} fontSize={12.5} fill="var(--ink)" fontWeight={600}>
+                {r.player}
+                <tspan fill="var(--dim)" fontWeight={400} fontSize={11.5}>
                   {"  "}
                   {r.team}
                 </tspan>

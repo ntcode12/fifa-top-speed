@@ -9,7 +9,15 @@ import type { SpeedRow } from "@/lib/types";
 
 const ROW_H = 44;
 
-export default function Dumbbell({ rows, n }: { rows: SpeedRow[]; n: number }) {
+export default function Dumbbell({
+  rows,
+  n,
+  unit = "km/h",
+}: {
+  rows: SpeedRow[];
+  n: number;
+  unit?: string;
+}) {
   const [ref, width] = useMeasure<HTMLDivElement>();
   const [tip, setTip] = useState<TooltipState | null>(null);
   const [hidden, setHidden] = useState<Set<string>>(new Set());
@@ -36,7 +44,7 @@ export default function Dumbbell({ rows, n }: { rows: SpeedRow[]; n: number }) {
           onClick={() => setHidden(new Set())}
           className="glass absolute -top-12 right-0 px-4 py-1.5 text-[12px] text-[var(--ink)]"
         >
-          ↺ Show all
+          Show all
         </button>
       )}
       <svg width="100%" height={height}>
@@ -44,7 +52,7 @@ export default function Dumbbell({ rows, n }: { rows: SpeedRow[]; n: number }) {
           <g key={t}>
             <line x1={x(t)} x2={x(t)} y1={0} y2={height - 30} stroke="rgba(255,255,255,0.09)" />
             <text x={x(t)} y={height - 12} textAnchor="middle" fontSize={10.5} fill="var(--dim)">
-              {t} km/h
+              {t} {unit}
             </text>
           </g>
         ))}
@@ -74,7 +82,7 @@ export default function Dumbbell({ rows, n }: { rows: SpeedRow[]; n: number }) {
                   lines: [
                     `${d.player} · ${d.team}`,
                     `Slower ${d.slow.toFixed(1)} · Faster ${d.fast.toFixed(1)}`,
-                    `Δ ${d.delta.toFixed(1)} km/h`,
+                    `Δ ${d.delta.toFixed(1)} ${unit}`,
                   ],
                 });
               }}
@@ -83,12 +91,12 @@ export default function Dumbbell({ rows, n }: { rows: SpeedRow[]; n: number }) {
               <text
                 x={x(xmin)}
                 y={cy - 8}
-                fontSize={11.5}
+                fontSize={12.5}
                 fill={off ? "var(--faint)" : "var(--ink)"}
                 fontWeight={600}
               >
                 {d.player}
-                <tspan fill={off ? "var(--faint)" : "var(--dim)"} fontWeight={400}>
+                <tspan fill={off ? "var(--faint)" : "var(--dim)"} fontWeight={400} fontSize={11.5}>
                   {"  "}
                   {d.team} · Δ{d.delta.toFixed(1)}
                 </tspan>

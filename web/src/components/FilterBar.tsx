@@ -54,7 +54,7 @@ export default function FilterBar({
   onChange: (next: FilterState) => void;
 }) {
   return (
-    <div className="mt-10 grid grid-cols-2 gap-3 max-sm:grid-cols-1 lg:grid-cols-5">
+    <div className="mt-3 grid grid-cols-2 gap-3 max-sm:grid-cols-1 lg:grid-cols-5">
       <MultiSelect
         label="Teams"
         options={allTeams}
