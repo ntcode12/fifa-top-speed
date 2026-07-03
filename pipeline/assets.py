@@ -71,7 +71,9 @@ def top_speeds(context: dg.AssetExecutionContext,
                raw_match_pdfs: list[str]) -> None:
     """Parse all raw PDFs -> validated table -> S3 parquet + local CSV."""
     rows: list[dict] = []
-    for key in raw_match_pdfs:
+    for i, key in enumerate(raw_match_pdfs, 1):
+        if i % 10 == 0 or i == len(raw_match_pdfs):
+            context.log.info(f"Parsing PDF {i}/{len(raw_match_pdfs)}")
         filename = key.removeprefix(RAW_PREFIX).removesuffix(".pdf")
         match_name = parsing.extract_match_name(filename)
         pdf_rows = parsing.parse_pdf(storage.download_bytes(key), match_name)

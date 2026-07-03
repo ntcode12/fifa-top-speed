@@ -1,9 +1,13 @@
 """Parse FIFA match report PDFs: custom-font decode + physical data extraction."""
 
 import io
+import logging
 import re
 
 import pdfplumber
+
+# pdfminer logs a FontBBox warning per page of these PDFs; drown it out
+logging.getLogger("pdfminer").setLevel(logging.ERROR)
 
 # Custom PDF font: U+E071..U+E07A -> digits '0'..'9', U+E094 -> '.'
 _DECODE = str.maketrans({chr(0xE071 + i): str(i) for i in range(10)} | {chr(0xE094): "."})
