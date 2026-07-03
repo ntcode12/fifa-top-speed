@@ -17,6 +17,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleW
 RAW_PREFIX = "raw/pdfs/"
 CURATED_KEY = "curated/top_speeds.parquet"
 LOCAL_CSV = Path("data/top_speeds.csv")
+WEB_JSON = Path("web/src/data/top_speeds.json")
 
 
 @dg.asset
@@ -83,6 +84,9 @@ def top_speeds(context: dg.AssetExecutionContext,
 
     LOCAL_CSV.parent.mkdir(exist_ok=True)
     df.write_csv(LOCAL_CSV)
+
+    WEB_JSON.parent.mkdir(parents=True, exist_ok=True)
+    df.drop_nulls("top_speed_kmh").write_json(WEB_JSON)
 
     context.add_output_metadata({
         "rows": len(df),

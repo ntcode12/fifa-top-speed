@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #e7ecf5;
+  --dim: #8b93a7;
+  --faint: #5c6478;
+  --indigo: #8b9cf9;
+  --rose: #fb7185;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.28), transparent),
+    radial-gradient(ellipse 60% 40% at 90% 10%, rgba(225, 29, 72, 0.16), transparent),
+    radial-gradient(ellipse 50% 60% at 60% 110%, rgba(56, 189, 248, 0.12), transparent),
+    #0b1020;
+  background-attachment: fixed;
+  font-family: var(--font-inter), -apple-system, sans-serif;
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
