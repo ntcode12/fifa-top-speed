@@ -1,19 +1,9 @@
----
-title: FIFA WC 2026 Top Speeds
-emoji: ⚡
-colorFrom: indigo
-colorTo: red
-sdk: docker
-app_port: 8501
-pinned: false
----
-
 # FIFA World Cup 2026 — Top Speed Report
 
 Scraped from the [FIFA Training Centre match report hub](https://www.fifatrainingcentre.com/en/fifa-world-cup-2026/match-report-hub.php).
 **72 matches · 48 teams · 2,271 player records** — refreshed daily by a Dagster pipeline as new match reports publish.
 
-Live app: interactive Streamlit explorer (`app.py`). Run locally with `uv run streamlit run app.py`.
+**Live app: [fifa-top-speed.vercel.app](https://fifa-top-speed.vercel.app)** — Next.js explorer in `web/`. Run locally with `cd web && npm run dev`.
 
 ---
 
@@ -26,8 +16,9 @@ Dagster + S3 (Terraform-provisioned, bucket `fifa-topspeed-<account>`):
 - Assets: `match_report_urls` → `raw_match_pdfs` (incremental, append-only raw zone) → `top_speeds` (parquet in S3 + `data/top_speeds.csv` fallback)
 - `terraform -chdir=infra apply` — provision the bucket
 
-The app reads `curated/top_speeds.parquet` from S3 and falls back to the committed
-`data/top_speeds.csv` when AWS credentials are unavailable (e.g. HF Spaces).
+The web app is statically built from `web/src/data/top_speeds.json`, which the
+pipeline refreshes alongside the S3 parquet — push to `main` and Vercel redeploys
+with the new data.
 
 ---
 
@@ -87,9 +78,9 @@ The app reads `curated/top_speeds.parquet` from S3 and falls back to the committ
 
 | File | Description |
 |------|-------------|
-| `app.py` | Streamlit explorer (liquid glass theme) |
-| `pipeline/` | Dagster assets: scrape hub → raw PDFs to S3 → curated parquet |
+| `web/` | Next.js explorer (liquid glass theme) — deployed on Vercel |
+| `pipeline/` | Dagster assets: scrape hub → raw PDFs to S3 → curated parquet + web JSON |
 | `infra/` | Terraform: S3 bucket (versioned, encrypted, private) |
-| `data/top_speeds.csv` | Full dataset (2,271 rows) — local fallback for the app |
+| `data/top_speeds.csv` | Full dataset (2,271 rows) |
 | `charts.py` | Generates all 5 static PNGs |
 | `tests/` | Unit tests (parsing, storage, Dagster definitions) |
