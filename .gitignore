@@ -13,3 +13,4 @@ wheels/
 exports/
 *.png
 .tmp_dagster_home*/
+docs/superpowers/
