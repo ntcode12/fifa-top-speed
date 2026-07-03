@@ -12,3 +12,4 @@ wheels/
 # Generated chart images (regenerate with `uv run python charts.py`)
 exports/
 *.png
+.tmp_dagster_home*/
