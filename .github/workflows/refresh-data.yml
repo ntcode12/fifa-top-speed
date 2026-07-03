@@ -11,8 +11,6 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    outputs:
-      changed: ${{ steps.diff.outputs.changed }}
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -21,19 +19,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
       - run: uv run dagster asset materialize -m pipeline.definitions --select '*'
-      - id: diff
-        run: echo "changed=$(git status --porcelain data web/src/data | wc -l | tr -d ' ')" >> "$GITHUB_OUTPUT"
-      - if: steps.diff.outputs.changed != '0'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data web/src/data
-          git commit -m "Data refresh: $(date -u +%F)"
-          git push
-
-  deploy:
-    needs: refresh
-    if: needs.refresh.outputs.changed != '0'
-    uses: ./.github/workflows/deploy.yml
-    secrets:
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      # Pushing data changes triggers a Vercel production deploy via its GitHub App
+      - run: |
+          if [ -n "$(git status --porcelain data web/src/data)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data web/src/data
+            git commit -m "Data refresh: $(date -u +%F)"
+            git push
+          else
+            echo "No new data"
+          fi
