@@ -43,7 +43,7 @@ export default function MultiSelect({
         </div>
       </button>
       {open && (
-        <div className="glass absolute z-20 mt-2 max-h-72 w-full overflow-auto p-2">
+        <div className="absolute z-20 mt-2 max-h-72 w-full overflow-auto rounded-2xl border border-white/15 bg-[#12182c] p-2 shadow-2xl">
           <input
             autoFocus
             value={q}
