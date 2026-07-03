@@ -5,6 +5,7 @@ import Tooltip, { TooltipState } from "../Tooltip";
 import useMeasure from "../useMeasure";
 import { linearScale, ticks } from "@/lib/scale";
 import { deltas } from "@/lib/stats";
+import { flagUrl } from "@/lib/flags";
 import type { SpeedRow } from "@/lib/types";
 
 const ROW_H = 44;
@@ -88,8 +89,18 @@ export default function Dumbbell({
               }}
               onMouseLeave={() => setTip(null)}
             >
+              {flagUrl(d.team) && (
+                <image
+                  href={flagUrl(d.team)!}
+                  x={x(xmin)}
+                  y={cy - 19.5}
+                  width={18}
+                  height={13.5}
+                  opacity={off ? 0.35 : 0.9}
+                />
+              )}
               <text
-                x={x(xmin)}
+                x={x(xmin) + 24}
                 y={cy - 8}
                 fontSize={12.5}
                 fill={off ? "var(--faint)" : "var(--ink)"}

@@ -5,6 +5,7 @@ import Tooltip, { TooltipState } from "../Tooltip";
 import useMeasure from "../useMeasure";
 import { linearScale, ticks } from "@/lib/scale";
 import { topN } from "@/lib/stats";
+import { flagUrl } from "@/lib/flags";
 import type { SpeedRow } from "@/lib/types";
 
 const MEDAL_COLORS = ["#f6c667", "#cbd5e1", "#e2a273"];
@@ -93,7 +94,17 @@ export default function Leaderboard({
                   {i + 1}
                 </text>
               )}
-              <text x={x(xmin) + 26} y={cy - 8} fontSize={12.5} fill="var(--ink)" fontWeight={600}>
+              {flagUrl(r.team) && (
+                <image
+                  href={flagUrl(r.team)!}
+                  x={x(xmin) + 24}
+                  y={cy - 19.5}
+                  width={18}
+                  height={13.5}
+                  opacity={0.9}
+                />
+              )}
+              <text x={x(xmin) + 48} y={cy - 8} fontSize={12.5} fill="var(--ink)" fontWeight={600}>
                 {r.player}
                 <tspan fill="var(--dim)" fontWeight={400} fontSize={11.5}>
                   {"  "}

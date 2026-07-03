@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { flagUrl } from "@/lib/flags";
 
 export default function MultiSelect({
   label,
@@ -68,6 +69,14 @@ export default function MultiSelect({
               }`}
             >
               {selected.includes(o) ? "✓ " : ""}
+              {flagUrl(o) && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={flagUrl(o)!}
+                  alt=""
+                  className="mr-2 inline h-3 w-4 rounded-[2px] object-cover align-[-1px]"
+                />
+              )}
               {o}
             </button>
           ))}

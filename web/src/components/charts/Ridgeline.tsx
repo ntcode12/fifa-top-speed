@@ -5,6 +5,7 @@ import Tooltip, { TooltipState } from "../Tooltip";
 import useMeasure from "../useMeasure";
 import { linearScale, ticks } from "@/lib/scale";
 import { kde, mean, median, teamsByMean } from "@/lib/stats";
+import { flagUrl } from "@/lib/flags";
 import type { SpeedRow } from "@/lib/types";
 
 const STEP = 26;
@@ -36,7 +37,7 @@ export default function Ridgeline({
   const tMedian = median(all);
   const n = teams.length;
   const height = n * STEP + Math.round(AMP) + 70;
-  const x = linearScale(xmin, xmax, 110, Math.max(width, 360) - 20);
+  const x = linearScale(xmin, xmax, 140, Math.max(width, 360) - 20);
   const grid = Array.from({ length: 240 }, (_, i) => xmin + ((xmax - xmin) * i) / 239);
 
   return (
@@ -70,17 +71,16 @@ export default function Ridgeline({
           const base = rank * STEP + Math.round(AMP) + 6;
           const dens = kde(t.speeds, grid);
           const color = mix(rank / Math.max(n - 1, 1));
+          const flag = flagUrl(t.team);
           const label = (
-            <text
-              key={`l-${t.team}`}
-              x={100}
-              y={base + 3}
-              textAnchor="end"
-              fontSize={10}
-              fill="var(--ink)"
-            >
-              {t.team}
-            </text>
+            <g key={`l-${t.team}`}>
+              {flag && (
+                <image href={flag} x={0} y={base - 7} width={16} height={12} opacity={0.9} />
+              )}
+              <text x={130} y={base + 3} textAnchor="end" fontSize={10} fill="var(--ink)">
+                {t.team}
+              </text>
+            </g>
           );
           if (!dens) return label;
           const peak = Math.max(...dens);

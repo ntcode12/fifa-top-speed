@@ -1,4 +1,5 @@
 import GlassCard from "./GlassCard";
+import { flagUrl } from "@/lib/flags";
 import { kpis } from "@/lib/stats";
 import { Unit, eliteThreshold, unitLabel } from "@/lib/units";
 import type { SpeedRow } from "@/lib/types";
@@ -17,6 +18,7 @@ export default function KpiCards({ rows, unit = "kmh" }: { rows: SpeedRow[]; uni
     {
       label: "Fastest team avg",
       value: k.bestTeam.team,
+      flag: flagUrl(k.bestTeam.team),
       sub: `${k.bestTeam.mean.toFixed(1)} ${label} mean`,
       accent: false,
     },
@@ -46,6 +48,14 @@ export default function KpiCards({ rows, unit = "kmh" }: { rows: SpeedRow[]; uni
             }`}
             style={c.accent ? { textShadow: "0 0 24px rgba(139,156,249,0.5)" } : undefined}
           >
+            {"flag" in c && c.flag && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={c.flag}
+                alt=""
+                className="mr-2 inline h-[18px] w-6 rounded-[3px] object-cover align-[-2px]"
+              />
+            )}
             {c.value}
           </div>
           <div className="mt-2 text-[11.5px] leading-snug text-[var(--dim)]">{c.sub}</div>
