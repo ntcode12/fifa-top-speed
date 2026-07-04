@@ -21,10 +21,10 @@ jobs:
       - run: uv run dagster asset materialize -m pipeline.definitions --select '*'
       # Pushing data changes triggers a Vercel production deploy via its GitHub App
       - run: |
-          if [ -n "$(git status --porcelain data web/src/data)" ]; then
+          if [ -n "$(git status --porcelain web/src/data)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add data web/src/data
+            git add web/src/data
             git commit -m "Data refresh: $(date -u +%F)"
             git push
           else

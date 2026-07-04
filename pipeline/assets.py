@@ -19,7 +19,6 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleW
 
 RAW_PREFIX = "raw/pdfs/"
 CURATED_KEY = "curated/top_speeds.parquet"
-LOCAL_CSV = Path("data/top_speeds.csv")
 WEB_JSON = Path("web/src/data/top_speeds.json")
 
 
@@ -69,7 +68,7 @@ def raw_match_pdfs(context: dg.AssetExecutionContext,
 @dg.asset
 def top_speeds(context: dg.AssetExecutionContext,
                raw_match_pdfs: list[str]) -> None:
-    """Parse all raw PDFs -> validated table -> S3 parquet + local CSV."""
+    """Parse all raw PDFs -> validated table -> S3 parquet + web JSON."""
     rows: list[dict] = []
     for i, key in enumerate(raw_match_pdfs, 1):
         if i % 10 == 0 or i == len(raw_match_pdfs):
@@ -89,9 +88,6 @@ def top_speeds(context: dg.AssetExecutionContext,
     buf = io.BytesIO()
     df.write_parquet(buf)
     storage.upload_bytes(CURATED_KEY, buf.getvalue())
-
-    LOCAL_CSV.parent.mkdir(exist_ok=True)
-    df.write_csv(LOCAL_CSV)
 
     WEB_JSON.parent.mkdir(parents=True, exist_ok=True)
     df.drop_nulls("top_speed_kmh").write_json(WEB_JSON)

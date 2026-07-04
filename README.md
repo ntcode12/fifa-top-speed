@@ -13,7 +13,7 @@ Dagster + S3 (Terraform-provisioned, bucket `fifa-topspeed-<account>`):
 
 - `uv run dagster dev` — UI with lineage, manual runs, daily schedule
 - `uv run dagster asset materialize -m pipeline.definitions --select '*'` — one-shot refresh
-- Assets: `match_report_urls` → `raw_match_pdfs` (incremental, append-only raw zone) → `top_speeds` (parquet in S3 + `data/top_speeds.csv` fallback)
+- Assets: `match_report_urls` → `raw_match_pdfs` (incremental, append-only raw zone) → `top_speeds` (parquet in S3 + `web/src/data/top_speeds.json` for the site)
 - `terraform -chdir=infra apply` — provision the bucket
 
 The web app is statically built from `web/src/data/top_speeds.json`, which the
@@ -81,6 +81,4 @@ with the new data.
 | `web/` | Next.js explorer (liquid glass theme) — deployed on Vercel |
 | `pipeline/` | Dagster assets: scrape hub → raw PDFs to S3 → curated parquet + web JSON |
 | `infra/` | Terraform: S3 bucket (versioned, encrypted, private) |
-| `data/top_speeds.csv` | Full dataset (2,683 rows) |
-| `charts.py` | Generates all 5 static PNGs |
 | `tests/` | Unit tests (parsing, storage, Dagster definitions) |
